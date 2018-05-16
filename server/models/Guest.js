@@ -37,5 +37,16 @@ const GuestSchema = new mongoose.Schema({
     type: String,
     minlength: 3,
     trim: 1
+  },
+  _creator: {
+    type: String,
+    minlength: 3,
+    trim: 1
   }
 });
+
+const Guest = mongoose.model("Guest", GuestSchema);
+
+module.exports = {
+  Guest
+};
