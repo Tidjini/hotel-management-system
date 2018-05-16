@@ -1,6 +1,7 @@
 //import libraries
 const express = require("express");
 const bodyParser = require("body-parser"); //for json purpose
+const { mongoose } = require("../config/config.db");
 
 const app = express();
 
