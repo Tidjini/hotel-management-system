@@ -2,6 +2,7 @@
 const express = require("express");
 const bodyParser = require("body-parser"); //for json purpose
 const { mongoose } = require("../config/config.db");
+const { Guest } = require("./models/Guest");
 
 const app = express();
 
