@@ -1,4 +1,4 @@
-import { FETCH_GUESTS, SAVE_GUEST } from "./types";
+import { FETCH_GUESTS, SAVE_GUEST, DELETE_GUEST } from "./types";
 //import Axios from "axios";
 
 export const fetchGuests = () => async (dispatch, getState, api) => {
@@ -10,12 +10,22 @@ export const fetchGuests = () => async (dispatch, getState, api) => {
 };
 
 export const addGuest = guest => async (dispatch, getState, api) => {
-  console.log(api.baseURL);
   const res = await api.post("/guests", guest);
 
   //const res = await Axios.post("http://localhost:5000/api/guests", guest);
   dispatch({
     type: SAVE_GUEST,
+    payload: res
+  });
+};
+
+export const deleteGuest = guestId => async (dispatch, getState, api) => {
+  console.log(guestId);
+  const res = await api.delete("/guests/" + guestId);
+
+  //const res = await Axios.post("http://localhost:5000/api/guests", guest);
+  dispatch({
+    type: DELETE_GUEST,
     payload: res
   });
 };

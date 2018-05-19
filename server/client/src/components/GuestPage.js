@@ -1,14 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchGuests } from "../actions";
+import { fetchGuests, deleteGuest } from "../actions";
 import { Table, Column, Cell, TableLoadingOption } from "@blueprintjs/table";
 import { Button } from "@blueprintjs/core";
 import AddGuestComponent from "./AddGuestComponent";
+import ConfirmationDialog from "./common/confirmationDialog";
 
 class GuestsPage extends Component {
   state = {
     columns: [],
+    selectedGuest: null,
     open: false,
+    deleteDialogState: false,
     cellsLoading: true
   };
   componentWillMount() {
@@ -18,6 +21,7 @@ class GuestsPage extends Component {
     }, 800);
     this.renderGuests();
   }
+
   componentDidMount() {
     //    this.renderGuests();
   }
@@ -30,7 +34,14 @@ class GuestsPage extends Component {
       this.setState({ cellsLoading: false });
     }, 1500);
   };
-  handleDialogState = () => this.setState({ open: !this.state.open });
+  handleDialogState = () =>
+    this.setState({
+      open: !this.state.open
+    });
+  handleDeleteDialogState = () =>
+    this.setState({
+      deleteDialogState: !this.state.deleteDialogState
+    });
   getLoadingOptions() {
     const loadingOptions = [];
     if (this.state.cellsLoading) {
@@ -44,12 +55,35 @@ class GuestsPage extends Component {
     }
     return loadingOptions;
   }
+
+  onDeleteGuest = () => {
+    if (this.state.selectedGuest != null) {
+      this.setState({ deleteDialogState: true });
+    }
+  };
+  deleteClient = () => {
+    this.props.deleteGuest(this.state.selectedGuest._id);
+    this.setState({ deleteDialogState: false });
+    this.onRefresh();
+  };
+
+  onTableSelection(e) {
+    console.log("TableTestRedux:onSelection e:", e);
+    if (e.length > 0) {
+      var selectedRow = e[0].rows[0];
+      this.setState({ selectedGuest: this.props.guests[selectedRow] });
+      console.log(this.state.selectedGuest);
+      //this.props.onSelectedEdgeOverrideIdx(selectedRow);
+    }
+  }
+
   render() {
     return (
       <div style={{ margin: "50px auto", display: "inline-block" }}>
         <Table
           numRows={this.props.guests.length}
           loadingOptions={this.getLoadingOptions()}
+          onSelection={e => this.onTableSelection(e)}
         >
           {this.state.columns}
         </Table>
@@ -80,9 +114,18 @@ class GuestsPage extends Component {
             className="pt-button pt-intent-danger"
             small
             style={{ marginRight: 10 }}
+            onClick={this.onDeleteGuest.bind(this)}
           >
             Supprimer
           </Button>
+          <ConfirmationDialog
+            icon="delete"
+            isOpen={this.state.deleteDialogState}
+            title="Suppression"
+            body="Voulez vous vraiment supprimer le client ."
+            closeAction={this.handleDeleteDialogState.bind(this)}
+            deleteAction={this.deleteClient.bind(this)}
+          />
           <Button
             icon="refresh"
             className="pt-button pt-intent-warning"
@@ -143,4 +186,6 @@ const mapStateToProps = state => {
   return { guests };
 };
 
-export default connect(mapStateToProps, { fetchGuests })(GuestsPage);
+export default connect(mapStateToProps, { fetchGuests, deleteGuest })(
+  GuestsPage
+);

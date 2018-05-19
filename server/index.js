@@ -2,6 +2,7 @@
 const express = require("express");
 const bodyParser = require("body-parser"); //for json purpose
 const { mongoose } = require("../config/config.db");
+const { ObjectID } = require("mongodb");
 const { Guest } = require("./models/Guest");
 require("../config/config");
 
@@ -41,6 +42,22 @@ app.get("/api/guests", (req, res) => {
     },
     err => {
       res.status(400).send(err);
+    }
+  );
+});
+app.delete("/api/guests/:id", (req, res) => {
+  // apply the fetch of { _application_key: req.app.key, _user_role: req.user.role }
+  const id = req.params.id;
+  if (!ObjectID.isValid(id)) {
+    return res.status(404).send();
+  }
+  Guest.findOneAndRemove({ _id: id }).then(
+    guest => {
+      if (guest == null) return res.status(404).send("Guest not found");
+      res.send({ guest });
+    },
+    err => {
+      res.status(400).send();
     }
   );
 });
