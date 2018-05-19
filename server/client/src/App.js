@@ -4,6 +4,7 @@ import "./App.css";
 import GuestPage from "./components/GuestPage";
 import HeaderComponent from "./components/HeaderComponent";
 import LeftMenuComponent from "./components/LeftMenuComponent";
+// import ActionTabsComponent from "./components/ActionTabsComponent";
 
 class App extends Component {
   render() {
