@@ -12,7 +12,7 @@ import reducers from "./reducers";
 //axios for custom client axios instance
 import axios from "axios";
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:5000/api"
+  baseURL: "/api"
 });
 
 const store = createStore(
