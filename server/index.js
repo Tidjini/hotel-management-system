@@ -68,12 +68,6 @@ app.patch("/api/guests/:id", (req, res) => {
     return res.status(404).send();
   }
 
-  //previous way to pck data from body
-  // const todo = new Todo({
-  //   text: req.body.text
-  // });
-  //new version with lodash (picks item if it exist)
-
   const body = _.pick(req.body, [
     "firstname",
     "lastname",

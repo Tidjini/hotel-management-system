@@ -11,6 +11,7 @@ class GuestsPage extends Component {
     columns: [],
     selectedGuest: null,
     open: false,
+    editOpen: false,
     deleteDialogState: false,
     cellsLoading: true
   };
@@ -38,10 +39,17 @@ class GuestsPage extends Component {
     this.setState({
       open: !this.state.open
     });
+  handleEditDialogState = () => {
+    this.setState({
+      editOpen: !this.state.editOpen,
+      selectedGuest: this.state.selectedGuest
+    });
+  };
   handleDeleteDialogState = () =>
     this.setState({
       deleteDialogState: !this.state.deleteDialogState
     });
+
   getLoadingOptions() {
     const loadingOptions = [];
     if (this.state.cellsLoading) {
@@ -106,9 +114,15 @@ class GuestsPage extends Component {
             className="pt-button pt-intent-success"
             small
             style={{ marginRight: 10 }}
+            onClick={this.handleEditDialogState.bind(this)}
           >
             Editer
           </Button>
+          <AddGuestComponent
+            open={this.state.editOpen}
+            handleDialogState={this.handleEditDialogState.bind(this)}
+            guest={this.state.selectedGuest}
+          />
           <Button
             icon="delete"
             className="pt-button pt-intent-danger"

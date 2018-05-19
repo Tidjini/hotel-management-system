@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchGuests, addGuest } from "../actions";
+import { updateGuest, addGuest } from "../actions";
 import {
   AnchorButton,
   Button,
@@ -19,12 +19,26 @@ class AddGuestsComponent extends Component {
     enforceFocus: true,
     usePortal: true,
 
+    guestId: null,
     guestName: "",
     guestFirst: "",
     guestAge: 0,
     guestPhone: ""
   };
 
+  componentDidMount() {
+    const { guest } = this.props;
+    console.log(this.props);
+    if (guest) {
+      this.setState({
+        guestId: this.props.guest._id || null,
+        guestName: this.props.guest.lastname || "",
+        guestFirst: this.props.guest.firstname || "",
+        guestAge: this.props.guest.age || 0,
+        guestPhone: this.props.guest.phoneNumber || ""
+      });
+    }
+  }
   saveGuest = () => {
     const guest = {
       firstname: this.state.guestFirst,
@@ -32,9 +46,13 @@ class AddGuestsComponent extends Component {
       age: this.state.guestAge,
       phoneNumber: this.state.guestPhone
     };
-
+    if (this.state.guestId != null) {
+      guest._id = this.state.guestId;
+      this.props.updateGuest(guest);
+      return;
+    }
     this.props.addGuest(guest);
-    this.props.fetchGuests();
+    //this.props.fetchGuests();
   };
 
   render() {
@@ -102,7 +120,7 @@ class AddGuestsComponent extends Component {
         </div>
         <div className={Classes.DIALOG_FOOTER}>
           <div className={Classes.DIALOG_FOOTER_ACTIONS}>
-            <Tooltip content="This button is hooked up to close the dialog.">
+            <Tooltip content="this will close the dialog">
               <Button onClick={this.props.handleDialogState}>Close</Button>
             </Tooltip>
             <AnchorButton
@@ -124,6 +142,6 @@ const mapStateToProps = state => {
   return { newGuest };
 };
 
-export default connect(mapStateToProps, { fetchGuests, addGuest })(
+export default connect(mapStateToProps, { updateGuest, addGuest })(
   AddGuestsComponent
 );
