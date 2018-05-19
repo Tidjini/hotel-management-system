@@ -1,28 +1,58 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchGuests } from "../actions";
-import { Table, Column, Cell } from "@blueprintjs/table";
+import { Table, Column, Cell, TableLoadingOption } from "@blueprintjs/table";
 import { Button } from "@blueprintjs/core";
 import AddGuestComponent from "./AddGuestComponent";
 
 class GuestsPage extends Component {
   state = {
     columns: [],
-    open: false
+    open: false,
+    cellsLoading: true
   };
   componentWillMount() {
     this.props.fetchGuests();
+    setTimeout(() => {
+      this.setState({ cellsLoading: false });
+    }, 800);
     this.renderGuests();
   }
   componentDidMount() {
     //    this.renderGuests();
   }
-  handleDialogState = () => this.setState({ open: !this.state.open });
 
+  onRefresh = () => {
+    this.props.fetchGuests();
+    this.setState({ cellsLoading: true });
+
+    setTimeout(() => {
+      this.setState({ cellsLoading: false });
+    }, 1500);
+  };
+  handleDialogState = () => this.setState({ open: !this.state.open });
+  getLoadingOptions() {
+    const loadingOptions = [];
+    if (this.state.cellsLoading) {
+      loadingOptions.push(TableLoadingOption.CELLS);
+    }
+    if (this.state.columnHeadersLoading) {
+      loadingOptions.push(TableLoadingOption.COLUMN_HEADERS);
+    }
+    if (this.state.rowHeadersLoading) {
+      loadingOptions.push(TableLoadingOption.ROW_HEADERS);
+    }
+    return loadingOptions;
+  }
   render() {
     return (
       <div style={{ margin: "50px auto", display: "inline-block" }}>
-        <Table numRows={this.props.guests.length}>{this.state.columns}</Table>
+        <Table
+          numRows={this.props.guests.length}
+          loadingOptions={this.getLoadingOptions()}
+        >
+          {this.state.columns}
+        </Table>
         <div style={{ marginTop: 20 }}>
           <Button
             icon="add"
@@ -58,6 +88,7 @@ class GuestsPage extends Component {
             className="pt-button pt-intent-warning"
             small
             style={{ marginRight: 10 }}
+            onClick={this.onRefresh.bind(this)}
           >
             Refresh
           </Button>

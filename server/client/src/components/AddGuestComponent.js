@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addGuest } from "../actions";
+import { fetchGuests, addGuest } from "../actions";
 import {
   AnchorButton,
   Button,
@@ -34,7 +34,7 @@ class AddGuestsComponent extends Component {
     };
 
     this.props.addGuest(guest);
-    //this.props.fetchGuests();
+    this.props.fetchGuests();
   };
 
   render() {
@@ -124,4 +124,6 @@ const mapStateToProps = state => {
   return { newGuest };
 };
 
-export default connect(mapStateToProps, { addGuest })(AddGuestsComponent);
+export default connect(mapStateToProps, { fetchGuests, addGuest })(
+  AddGuestsComponent
+);
