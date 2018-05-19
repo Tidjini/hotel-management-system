@@ -62,6 +62,35 @@ app.delete("/api/guests/:id", (req, res) => {
   );
 });
 
+app.patch("/api/guests/:id", (req, res) => {
+  const id = req.params.id;
+  if (!ObjectID.isValid(id)) {
+    return res.status(404).send();
+  }
+
+  //previous way to pck data from body
+  // const todo = new Todo({
+  //   text: req.body.text
+  // });
+  //new version with lodash (picks item if it exist)
+
+  const body = _.pick(req.body, [
+    "firstname",
+    "lastname",
+    "age",
+    "phoneNumber"
+  ]);
+
+  Guest.findOneAndUpdate({ _id: id }, { $set: body }, { new: true })
+    .then(guest => {
+      if (guest == null) return res.status(404).send("Guest not found");
+      res.send({ guest });
+    })
+    .catch(err => {
+      res.status(400).send();
+    });
+});
+
 const PORT = process.env.PORT;
 
 app.listen(PORT, () => {
