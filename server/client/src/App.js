@@ -3,13 +3,17 @@ import logo from "./logo.svg";
 import "./App.css";
 import GuestPage from "./components/GuestPage";
 import HeaderComponent from "./components/HeaderComponent";
+import LeftMenuComponent from "./components/LeftMenuComponent";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <HeaderComponent />
-        <GuestPage />
+        <div>
+          <LeftMenuComponent />
+          <GuestPage />
+        </div>
       </div>
     );
   }

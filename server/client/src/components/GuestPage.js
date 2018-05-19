@@ -77,7 +77,7 @@ class GuestsPage extends Component {
 
   onTableSelection(e) {
     console.log("TableTestRedux:onSelection e:", e);
-    if (e.length > 0) {
+    if (e.length > 0 && e[0].rows) {
       var selectedRow = e[0].rows[0];
       this.setState({ selectedGuest: this.props.guests[selectedRow] });
       console.log(this.state.selectedGuest);
@@ -87,7 +87,7 @@ class GuestsPage extends Component {
 
   render() {
     return (
-      <div style={{ margin: "50px auto", display: "inline-block" }}>
+      <div style={{ margin: "10px auto", display: "inline-block" }}>
         <Table
           numRows={this.props.guests.length}
           loadingOptions={this.getLoadingOptions()}
