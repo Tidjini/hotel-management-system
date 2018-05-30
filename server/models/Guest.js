@@ -5,6 +5,7 @@ const GuestSchema = new mongoose.Schema({
     type: String,
     required: true,
     minlength: 3,
+
     trim: 1
   },
   lastname: {
