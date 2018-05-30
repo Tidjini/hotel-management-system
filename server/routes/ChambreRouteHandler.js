@@ -44,13 +44,38 @@ module.exports = app => {
       return res.status(404).send();
     }
     Chambre.findOneAndRemove({ _id: id }).then(
-      guest => {
-        if (guest == null) return res.status(404).send("Guest not found");
-        res.send({ guest });
+      chambre => {
+        if (chambre == null) return res.status(404).send("chambre not found");
+        res.send({ chambre });
       },
       err => {
         res.status(400).send();
       }
     );
+  });
+
+  app.patch("/api/chambres/:id", (req, res) => {
+    const id = req.params.id;
+    if (!ObjectID.isValid(id)) {
+      return res.status(404).send();
+    }
+
+    const body = _.pick(req.body, [
+      "num",
+      "type",
+      "vue",
+      "etat",
+      "nombreLit",
+      "price"
+    ]);
+
+    Chambre.findOneAndUpdate({ _id: id }, { $set: body }, { new: true })
+      .then(chambre => {
+        if (chambre == null) return res.status(404).send("Chambre not found");
+        res.send({ chambre });
+      })
+      .catch(err => {
+        res.status(400).send();
+      });
   });
 };
