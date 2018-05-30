@@ -1,4 +1,7 @@
 const { Chambre } = require("./../models/Chambre");
+const { ObjectID } = require("mongodb");
+
+const _ = require("lodash");
 
 module.exports = app => {
   //post the chambre request

@@ -11,6 +11,8 @@ const app = express();
 const _ = require("lodash");
 app.use(bodyParser.json());
 
+require("./routes/ChambreRouteHandler")(app);
+
 //guests
 app.post("/api/guests", (req, res) => {
   //    _creator: req.user._id added in header with json webtoken
