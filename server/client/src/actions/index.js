@@ -10,6 +10,7 @@ export const fetchGuests = () => async (dispatch, getState, api) => {
 };
 
 export const addGuest = guest => async (dispatch, getState, api) => {
+  console.log(api);
   const res = await api.post("/guests", guest);
 
   dispatch({

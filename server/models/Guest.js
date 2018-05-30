@@ -19,7 +19,6 @@ const GuestSchema = new mongoose.Schema({
   },
   cartId: {
     type: String,
-    minlength: 3,
     trim: 1
   },
   phoneNumber: {

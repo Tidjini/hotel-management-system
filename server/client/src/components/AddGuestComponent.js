@@ -51,6 +51,7 @@ class AddGuestsComponent extends Component {
       this.props.updateGuest(guest);
       return;
     }
+    console.log(guest);
     this.props.addGuest(guest);
     //this.props.fetchGuests();
   };
