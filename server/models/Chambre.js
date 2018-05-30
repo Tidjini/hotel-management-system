@@ -22,6 +22,11 @@ const ChambreSchema = new mongoose.Schema({
   },
   price: {
     type: Number
+  },
+  _creator: {
+    type: String,
+    minlength: 3,
+    trim: 1
   }
 });
 
