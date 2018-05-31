@@ -12,3 +12,12 @@ export const fetchChambres = () => async (dispatch, getState, api) => {
     payload: res
   });
 };
+
+export const addChambre = chambre => async (dispatch, getState, api) => {
+  console.log(api);
+  const res = await api.post("/chambres", chambre);
+  dispatch({
+    type: SAVE_CHAMBRE,
+    payload: res
+  });
+};
