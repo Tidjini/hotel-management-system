@@ -13,8 +13,8 @@ const { Content, Footer } = Layout;
 class App extends Component {
   state = {
     collapsed: false,
-    Tabs: [],
-    current: "home"
+    Tabs: ["Home"],
+    current: "Home"
   };
   handleLeftMenuClick = e => {
     const tabs = this.state.Tabs;
@@ -24,6 +24,11 @@ class App extends Component {
       Tabs: tabs,
       current: e.key
     });
+    this.addTab(e.key);
+  };
+
+  addTab = tab => {
+    return tab;
   };
 
   render() {

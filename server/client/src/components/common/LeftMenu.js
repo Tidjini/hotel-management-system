@@ -7,7 +7,7 @@ const SubMenu = Menu.SubMenu;
 export default class LeftMenu extends Component {
   state = {
     collapsed: false,
-    current: "home"
+    current: "Home"
   };
   onCollapse = collapsed => {
     console.log(collapsed);
@@ -41,7 +41,7 @@ export default class LeftMenu extends Component {
           onClick={this.handleClick}
           selectedKeys={[this.state.current]}
         >
-          <Menu.Item key="home">
+          <Menu.Item key="Home">
             <Icon type="home" />
             <span>Accuiel</span>
           </Menu.Item>

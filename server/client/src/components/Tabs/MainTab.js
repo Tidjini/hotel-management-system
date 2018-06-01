@@ -1,26 +1,37 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { removeTab } from "./../../actions";
 
 import { Tabs } from "antd";
 const TabPane = Tabs.TabPane;
 
-export default class MainTab extends Component {
+class MainTab extends Component {
   constructor(props) {
     super(props);
     this.newTabIndex = 0;
-    const panes = [
-      {
-        title: "Tab 1",
-        content: "Content of Tab 1",
-        key: "1",
-        closable: false
-      },
-      { title: "Tab 2", content: "Content of Tab 2", key: "2" },
-      { title: "Tab 3", content: "Content of Tab 3", key: "3" }
-    ];
+
     this.state = {
-      activeKey: panes[0].key,
-      panes
+      activeKey: "",
+      panes: []
     };
+    const pa = this.props.Tabs.map(tab => {
+      // const im =  import(`./../home/${tab}`);
+      import(`./../home/${tab}`).then(m => {
+        const activeKey = tab;
+        const panes = this.state.panes;
+        const Compo = m.default;
+        const pane = {
+          title: tab,
+          content: <Compo />,
+          key: tab,
+          closable: false
+        };
+        panes.push(pane);
+        this.setState({ panes, activeKey });
+      });
+    });
+
+    console.log(pa);
   }
 
   onChange = activeKey => {
@@ -53,6 +64,7 @@ export default class MainTab extends Component {
     }
     this.setState({ panes, activeKey });
   };
+
   render() {
     return (
       <Tabs
@@ -70,3 +82,15 @@ export default class MainTab extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  const { Tabs, Current } = state.tabsObject;
+  return {
+    Tabs,
+    Current
+  };
+};
+
+export default connect(mapStateToProps, {
+  removeTab
+})(MainTab);
