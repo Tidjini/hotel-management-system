@@ -4,9 +4,11 @@ import "./App.css";
 
 import MainTab from "./components/Tabs/MainTab";
 import LeftMenu from "./components/common/LeftMenu";
+import AppHeader from "./components/common/Header";
+import AppFooter from "./components/common/AppFooter";
 
 import { Layout, Breadcrumb, Icon } from "antd";
-const { Header, Content, Footer } = Layout;
+const { Content, Footer } = Layout;
 
 class App extends Component {
   render() {
@@ -15,21 +17,13 @@ class App extends Component {
         <LeftMenu />
 
         <Layout>
-          <Header style={{ background: "#CCC", padding: 0 }} />
+          <AppHeader />
           <Content style={{ margin: "16px" }}>
-            {/* <Breadcrumb style={{ margin: "16px 0" }}>
-              <Breadcrumb.Item>User</Breadcrumb.Item>
-              <Breadcrumb.Item>Bill</Breadcrumb.Item>
-            </Breadcrumb> */}
             <div style={{ padding: 24, background: "#fff", minHeight: 520 }}>
               <MainTab />
             </div>
           </Content>
-          <Footer
-            style={{ textAlign: "center", height: 50, padding: 0, margin: 0 }}
-          >
-            Ant Design ©2016 Created by Ant UED
-          </Footer>
+          <AppFooter />
         </Layout>
       </Layout>
     );

@@ -18,8 +18,6 @@ export default class LeftMenu extends Component {
         collapsible
         collapsed={this.state.collapsed}
         onCollapse={this.onCollapse}
-        background="#FFF"
-        style={{ background: "#FFF" }}
       >
         <div
           className="logo"
@@ -29,7 +27,7 @@ export default class LeftMenu extends Component {
             margin: "16px"
           }}
         />
-        <Menu theme="light" defaultSelectedKeys={["1"]} mode="inline">
+        <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
           <Menu.Item key="1">
             <Icon type="pie-chart" />
             <span>Option 1</span>
