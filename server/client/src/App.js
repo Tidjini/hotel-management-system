@@ -11,10 +11,25 @@ import { Layout, Breadcrumb, Icon } from "antd";
 const { Content, Footer } = Layout;
 
 class App extends Component {
+  state = {
+    collapsed: false,
+    Tabs: [],
+    current: "home"
+  };
+  handleLeftMenuClick = e => {
+    const tabs = this.state.Tabs;
+    tabs.push(e.key);
+
+    this.setState({
+      Tabs: tabs,
+      current: e.key
+    });
+  };
+
   render() {
     return (
       <Layout style={{ minHeight: "100vh" }}>
-        <LeftMenu />
+        <LeftMenu handleClick={this.handleLeftMenuClick} />
 
         <Layout>
           <AppHeader />

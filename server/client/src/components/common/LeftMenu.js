@@ -6,11 +6,18 @@ const SubMenu = Menu.SubMenu;
 
 export default class LeftMenu extends Component {
   state = {
-    collapsed: false
+    collapsed: false,
+    current: "home"
   };
   onCollapse = collapsed => {
     console.log(collapsed);
     this.setState({ collapsed });
+  };
+  handleClick = e => {
+    this.setState({
+      current: e.key
+    });
+    this.props.handleClick(e);
   };
   render() {
     return (
@@ -27,27 +34,28 @@ export default class LeftMenu extends Component {
             margin: "16px"
           }}
         />
-        <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
-          <Menu.Item key="1">
-            <Icon type="pie-chart" />
-            <span>Option 1</span>
-          </Menu.Item>
-          <Menu.Item key="2">
-            <Icon type="desktop" />
-            <span>Option 2</span>
+        <Menu
+          theme="dark"
+          defaultSelectedKeys={["1"]}
+          mode="inline"
+          onClick={this.handleClick}
+          selectedKeys={[this.state.current]}
+        >
+          <Menu.Item key="home">
+            <Icon type="home" />
+            <span>Accuiel</span>
           </Menu.Item>
           <SubMenu
             key="sub1"
             title={
               <span>
-                <Icon type="user" />
-                <span>User</span>
+                <Icon type="laptop" />
+                <span>Chambre</span>
               </span>
             }
           >
-            <Menu.Item key="3">Tom</Menu.Item>
-            <Menu.Item key="4">Bill</Menu.Item>
-            <Menu.Item key="5">Alex</Menu.Item>
+            <Menu.Item key="ChambreCollection">List des chambre</Menu.Item>
+            <Menu.Item key="ChambreView">Ajouter une chambre</Menu.Item>
           </SubMenu>
           <SubMenu
             key="sub2"
@@ -61,10 +69,6 @@ export default class LeftMenu extends Component {
             <Menu.Item key="6">Team 1</Menu.Item>
             <Menu.Item key="8">Team 2</Menu.Item>
           </SubMenu>
-          <Menu.Item key="9">
-            <Icon type="file" />
-            <span>File</span>
-          </Menu.Item>
         </Menu>
       </Sider>
     );
