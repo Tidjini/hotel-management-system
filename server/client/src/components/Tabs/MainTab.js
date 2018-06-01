@@ -1,41 +1,41 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { removeTab } from "./../../actions";
+import { removeTab, changeTab } from "./../../actions";
+
+import Home from "./../home/Home";
+import ChambreView from "./../chambre/ChambreView";
+import ChambreCollection from "./../chambre/ChambreCollection";
 
 import { Tabs } from "antd";
 const TabPane = Tabs.TabPane;
 
+const components = {
+  Home: <Home />,
+  ChambreCollection: <ChambreCollection />,
+  ChambreView: <ChambreView />
+};
 class MainTab extends Component {
   constructor(props) {
     super(props);
     this.newTabIndex = 0;
 
     this.state = {
-      activeKey: "",
+      activeKey: this.props.Current || "home",
       panes: []
     };
-    const pa = this.props.Tabs.map(tab => {
-      // const im =  import(`./../home/${tab}`);
-      import(`./../home/${tab}`).then(m => {
-        const activeKey = tab;
-        const panes = this.state.panes;
-        const Compo = m.default;
-        const pane = {
-          title: tab,
-          content: <Compo />,
-          key: tab,
-          closable: false
-        };
-        panes.push(pane);
-        this.setState({ panes, activeKey });
-      });
-    });
-
-    console.log(pa);
   }
 
+  componentWillMount() {
+    const tabs = this.props.Tabs;
+
+    const panes = [];
+  }
+
+  componentDidMount() {}
+
   onChange = activeKey => {
-    this.setState({ activeKey });
+    this.props.changeTab(activeKey);
+    //this.setState({ activeKey });
   };
   onEdit = (targetKey, action) => {
     this[action](targetKey);
@@ -69,28 +69,31 @@ class MainTab extends Component {
     return (
       <Tabs
         onChange={this.onChange}
-        activeKey={this.state.activeKey}
+        activeKey={this.props.current}
         type="editable-card"
         onEdit={this.onEdit}
       >
-        {this.state.panes.map(pane => (
-          <TabPane tab={pane.title} key={pane.key} closable={pane.closable}>
-            {pane.content}
-          </TabPane>
-        ))}
+        {this.props.panes.map(pane => {
+          return (
+            <TabPane tab={pane.title} key={pane.key} closable={pane.closable}>
+              {components[pane.key]}
+            </TabPane>
+          );
+        })}
       </Tabs>
     );
   }
 }
 
 const mapStateToProps = state => {
-  const { Tabs, Current } = state.tabsObject;
+  const { panes, current } = state.tabsObject;
   return {
-    Tabs,
-    Current
+    panes,
+    current
   };
 };
 
 export default connect(mapStateToProps, {
-  removeTab
+  removeTab,
+  changeTab
 })(MainTab);

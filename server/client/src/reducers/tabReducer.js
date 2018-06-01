@@ -1,17 +1,39 @@
-import { ADD_TAB, REMOVE_TAB } from "../actions/types";
+import { ADD_TAB, REMOVE_TAB, CHANGE_TAB } from "../actions/types";
 
 const INITIAL_STATE = {
-  Tabs: ["Home"],
-  Current: "Home"
+  panes: [
+    {
+      title: "Home",
+      content: "Home",
+      key: "Home"
+    }
+  ],
+  tabs: ["Home"],
+  current: "Home"
 };
 
 export default (state = INITIAL_STATE, actions) => {
   let Tabs = [];
   switch (actions.type) {
     case ADD_TAB:
-      Tabs = state.Tabs;
-      Tabs.push(actions.payload);
-      return { ...state, Tabs, Current: actions.payload };
+      const tab = actions.payload;
+
+      const pane = {
+        title: tab,
+        content: "eaz",
+        key: tab
+      };
+      const { panes, tabs } = state;
+
+      const indexPane = tabs.indexOf(tab);
+      if (indexPane > -1) {
+        return { ...state, current: tab };
+      } else {
+        panes.push(pane);
+        tabs.push(tab);
+        return { ...state, panes, current: tab, tabs };
+      }
+
     case REMOVE_TAB:
       Tabs = state.Tabs;
       const index = Tabs.indexOf(actions.payload);
@@ -20,6 +42,8 @@ export default (state = INITIAL_STATE, actions) => {
       }
       return { ...state, Tabs, Current: Tabs[Tabs.length - 1] };
 
+    case CHANGE_TAB:
+      return { ...state, current: actions.payload };
     default:
       return state;
   }

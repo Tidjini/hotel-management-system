@@ -12,3 +12,4 @@ export const UPDATE_CHAMBRE = "update_chambre";
 /**Tabs */
 export const ADD_TAB = "add_tab";
 export const REMOVE_TAB = "remove_tab";
+export const CHANGE_TAB = "change_tab";

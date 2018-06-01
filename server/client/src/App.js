@@ -7,8 +7,8 @@ import LeftMenu from "./components/common/LeftMenu";
 import AppHeader from "./components/common/Header";
 import AppFooter from "./components/common/AppFooter";
 
-import { Layout, Breadcrumb, Icon } from "antd";
-const { Content, Footer } = Layout;
+import { Layout } from "antd";
+const { Content } = Layout;
 
 class App extends Component {
   state = {
@@ -16,6 +16,7 @@ class App extends Component {
     Tabs: ["Home"],
     current: "Home"
   };
+
   handleLeftMenuClick = e => {
     const tabs = this.state.Tabs;
     tabs.push(e.key);
@@ -38,7 +39,7 @@ class App extends Component {
 
         <Layout>
           <AppHeader />
-          <Content style={{ margin: "16px" }}>
+          <Content style={{}}>
             <div style={{ padding: 24, background: "#fff", minHeight: 520 }}>
               <MainTab />
             </div>

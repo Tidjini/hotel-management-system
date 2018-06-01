@@ -1,10 +1,12 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { addTab } from "./../../actions";
 
 import { Layout, Menu, Icon } from "antd";
 const { Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 
-export default class LeftMenu extends Component {
+class LeftMenu extends Component {
   state = {
     collapsed: false,
     current: "Home"
@@ -17,7 +19,10 @@ export default class LeftMenu extends Component {
     this.setState({
       current: e.key
     });
-    this.props.handleClick(e);
+    console.log(e.key);
+    this.props.addTab(e.key);
+    console.log(this.props.Current);
+    //this.props.handleClick(e);
   };
   render() {
     return (
@@ -74,3 +79,16 @@ export default class LeftMenu extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  const { Tabs, Current, Uris } = state.tabsObject;
+  return {
+    Tabs,
+    Current,
+    Uris
+  };
+};
+
+export default connect(mapStateToProps, {
+  addTab
+})(LeftMenu);
