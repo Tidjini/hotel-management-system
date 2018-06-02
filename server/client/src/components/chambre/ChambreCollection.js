@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { fetchChambres } from "./../../actions";
 
 import { Table } from "antd";
 
@@ -12,7 +13,8 @@ const columns = [
   {
     title: "Type",
     dataIndex: "type",
-    key: "type"
+    key: "type",
+    render: type => type
   },
   {
     title: "Vue",
@@ -32,12 +34,14 @@ const columns = [
   {
     title: "Prix",
     dataIndex: "price",
-    key: "price"
+    key: "price",
+    render: price => `${price.formatMoney(2, ",", " ")} DA`
   }
 ];
 
 class ChambreCollection extends React.Component {
   componentWillMount() {
+    this.props.fetchChambres();
     console.log(this.props.chambres);
   }
   render() {
@@ -59,4 +63,25 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, null)(ChambreCollection);
+export default connect(mapStateToProps, { fetchChambres })(ChambreCollection);
+
+Number.prototype.formatMoney = function(c, d, t) {
+  var n = this,
+    c = isNaN((c = Math.abs(c))) ? 2 : c,
+    d = d == undefined ? "." : d,
+    t = t == undefined ? "," : t,
+    s = n < 0 ? "-" : "",
+    i = String(parseInt((n = Math.abs(Number(n) || 0).toFixed(c)))),
+    j = (j = i.length) > 3 ? j % 3 : 0;
+  return (
+    s +
+    (j ? i.substr(0, j) + t : "") +
+    i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) +
+    (c
+      ? d +
+        Math.abs(n - i)
+          .toFixed(c)
+          .slice(2)
+      : "")
+  );
+};
