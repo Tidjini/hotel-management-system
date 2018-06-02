@@ -40,7 +40,7 @@ class App extends Component {
         <Layout>
           <AppHeader />
           <Content style={{}}>
-            <div style={{ padding: 24, background: "#fff", minHeight: 520 }}>
+            <div style={{ padding: 24, background: "#fff", minHeight: 580 }}>
               <MainTab />
             </div>
           </Content>

@@ -5,6 +5,11 @@ export default class ChambreCollection extends Component {
     return (
       <div>
         <h1>Chambre ChambreCollection</h1>
+        <h1>Chambre ChambreCollection</h1>
+        <h1>Chambre ChambreCollection</h1>
+        <h1>Chambre ChambreCollection</h1>
+        <h1>Chambre ChambreCollection</h1>
+        <h1>Chambre ChambreCollection</h1>
       </div>
     );
   }

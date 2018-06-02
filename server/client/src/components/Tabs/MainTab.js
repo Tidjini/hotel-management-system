@@ -51,18 +51,7 @@ class MainTab extends Component {
     this.setState({ panes, activeKey });
   };
   remove = targetKey => {
-    let activeKey = this.state.activeKey;
-    let lastIndex;
-    this.state.panes.forEach((pane, i) => {
-      if (pane.key === targetKey) {
-        lastIndex = i - 1;
-      }
-    });
-    const panes = this.state.panes.filter(pane => pane.key !== targetKey);
-    if (lastIndex >= 0 && activeKey === targetKey) {
-      activeKey = panes[lastIndex].key;
-    }
-    this.setState({ panes, activeKey });
+    this.props.removeTab(targetKey);
   };
 
   render() {

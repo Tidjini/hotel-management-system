@@ -13,17 +13,16 @@ const INITIAL_STATE = {
 };
 
 export default (state = INITIAL_STATE, actions) => {
-  let Tabs = [];
+  const { panes, tabs } = state;
+  const tab = actions.payload;
+
   switch (actions.type) {
     case ADD_TAB:
-      const tab = actions.payload;
-
       const pane = {
         title: tab,
         content: "eaz",
         key: tab
       };
-      const { panes, tabs } = state;
 
       const indexPane = tabs.indexOf(tab);
       if (indexPane > -1) {
@@ -35,12 +34,15 @@ export default (state = INITIAL_STATE, actions) => {
       }
 
     case REMOVE_TAB:
-      Tabs = state.Tabs;
-      const index = Tabs.indexOf(actions.payload);
+      const index = tabs.indexOf(tab);
       if (index > -1) {
-        Tabs.splice(index, 1);
+        panes.splice(index, 1);
+        tabs.splice(index, 1);
+        const activeIndex = index == 0 ? 0 : index - 1;
+        return { ...state, panes, current: tabs[activeIndex] };
+      } else {
+        return state;
       }
-      return { ...state, Tabs, Current: Tabs[Tabs.length - 1] };
 
     case CHANGE_TAB:
       return { ...state, current: actions.payload };

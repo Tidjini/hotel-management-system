@@ -63,7 +63,6 @@ app.delete("/api/guests/:id", (req, res) => {
     }
   );
 });
-
 app.patch("/api/guests/:id", (req, res) => {
   const id = req.params.id;
   if (!ObjectID.isValid(id)) {
