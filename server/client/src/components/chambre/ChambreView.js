@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-
-import { Form, Row, Col, Input, Button, Icon } from "antd";
+import { fields } from "./../../ViewModels/chambres/ChambreViewModel";
+import { Form, Row, Col, Input, Button, Icon, InputNumber } from "antd";
 const FormItem = Form.Item;
 
 class ChambreView extends React.Component {
@@ -29,31 +29,29 @@ class ChambreView extends React.Component {
     const count = 10;
     const { getFieldDecorator } = this.props.form;
     const children = [];
-    const fields = [
-      {
-        field: "num",
-        label: "Numéro",
-        required: true,
-        maxLength: 10,
-        minLength: 1
-      }
-    ];
-    for (let i = 0; i < 10; i++) {
+    fields.forEach(f => {
+      const inputType =
+        f.type == Number ? (
+          <Input placeholder={`${f.label}`} style={{ flex: 1 }} />
+        ) : (
+          <Input placeholder={`${f.label}`} style={{ flex: 1 }} />
+        );
       children.push(
-        <Col span={6} key={i} style={{ display: i < count ? "block" : "none" }}>
-          <FormItem label={`Field ${i}`} style={{ display: "flex" }}>
-            {getFieldDecorator(`field-${i}`, {
+        <Col span={6} key={f.field}>
+          <FormItem label={`${f.label}`} style={{ display: "flex" }}>
+            {getFieldDecorator(`${f.field}`, {
               rules: [
                 {
-                  required: length => length <= 10 && length > 0,
-                  message: "Input something!"
+                  required: f.required,
+                  message: `le champs ${f.label} est requis`
                 }
               ]
-            })(<Input placeholder="placeholder" />)}
+            })(inputType)}
           </FormItem>
         </Col>
       );
-    }
+    });
+
     return children;
   }
 
