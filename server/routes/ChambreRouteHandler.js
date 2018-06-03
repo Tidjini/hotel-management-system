@@ -15,7 +15,6 @@ module.exports = app => {
       price: req.body.price,
       _creator: "system"
     });
-
     chambre.save().then(
       doc => {
         res.send(doc);

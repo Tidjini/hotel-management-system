@@ -13,9 +13,14 @@ const INITIAL_STATE = {
 };
 
 export default (state = INITIAL_STATE, actions) => {
+  const chambres = [];
   switch (actions.type) {
     case FETCH_CHAMBRES:
-      return { ...state, chambres: actions.payload.data.chambres };
+      actions.payload.data.chambres.forEach(element => {
+        chambres.push({ ...element, key: element._id });
+      });
+      console.log(chambres);
+      return { ...state, chambres };
     case SAVE_CHAMBRE:
       return { ...state, lastAdded: actions.payload.data };
     case DELETE_CHAMBRE:
