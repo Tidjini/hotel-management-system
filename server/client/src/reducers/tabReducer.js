@@ -5,7 +5,8 @@ const INITIAL_STATE = {
     {
       title: "Home",
       content: "Home",
-      key: "Home"
+      key: "Home",
+      closable: false
     }
   ],
   tabs: ["Home"],

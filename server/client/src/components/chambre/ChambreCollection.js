@@ -48,6 +48,7 @@ class ChambreCollection extends React.Component {
     return (
       <Table
         bordered
+        
         size="middle"
         dataSource={this.props.chambres}
         columns={columns}
