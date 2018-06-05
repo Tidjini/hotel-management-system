@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchChambres, updateChambre, deleteChambre } from "./../../actions";
+import {
+  fetchChambres,
+  updateChambre,
+  deleteChambre,
+  addTab
+} from "./../../actions";
 import { Table, Form, Input, InputNumber, Popconfirm, Button } from "antd";
 import { columns } from "./../../ViewModels/chambres/ChambreViewModel";
 import { ActionsColumn } from "./../common/ActionsColumn";
@@ -152,7 +157,9 @@ class ChambreCollection extends React.Component {
     this.props.fetchChambres();
   }
 
-  handleAdd = () => {};
+  handleAdd = () => {
+    this.props.addTab("ChambreView");
+  };
   componentWillMount() {
     this.props.fetchChambres();
 
@@ -188,7 +195,12 @@ class ChambreCollection extends React.Component {
     });
     return (
       <div>
-        <Button onClick={this.handleAdd.bind(this)}>Add Row</Button>
+        <Button
+          onClick={this.handleAdd.bind(this)}
+          style={{ marginBottom: 10 }}
+        >
+          Ajouter une nouvelle chambre
+        </Button>
         <Table
           components={components}
           bordered
@@ -211,5 +223,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchChambres, updateChambre, deleteChambre }
+  { fetchChambres, updateChambre, deleteChambre, addTab }
 )(ChambreCollection);

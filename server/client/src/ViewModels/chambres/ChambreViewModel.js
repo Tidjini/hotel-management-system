@@ -62,7 +62,20 @@ export const columns = [
     title: "Numéro",
     dataIndex: "num",
     key: "num",
-    editable: true
+    editable: true,
+    render: num => (
+      <p
+        style={{
+          fontSize: 15,
+          fontWeight: 600,
+          color: "#2E2F2E",
+          padding: 0,
+          margin: 0
+        }}
+      >
+        {num}
+      </p>
+    )
   },
   {
     title: "Type",

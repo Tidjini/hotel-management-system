@@ -21,7 +21,7 @@ export const moneyFormat = function(c, d, t) {
 
 export const chambreState = [
   "Vider la chambre",
-  "Netoyage",
+  "Nettoyage",
   "Cleaner",
   "État 4"
 ];
