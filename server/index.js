@@ -12,6 +12,7 @@ const _ = require("lodash");
 app.use(bodyParser.json());
 
 require("./routes/ChambreRouteHandler")(app);
+require("./routes/FamilleRouteHandler")(app);
 
 //guests
 app.post("/api/guests", (req, res) => {
