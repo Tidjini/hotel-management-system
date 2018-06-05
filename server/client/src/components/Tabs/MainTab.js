@@ -6,6 +6,7 @@ import Home from "./../home/Home";
 import ChambreView from "./../chambre/ChambreView";
 import ChambreCollection from "./../chambre/ChambreCollection";
 
+import { tabsTitle } from "./../../helpers/tabs";
 import { Tabs } from "antd";
 const TabPane = Tabs.TabPane;
 
@@ -40,16 +41,7 @@ class MainTab extends Component {
   onEdit = (targetKey, action) => {
     this[action](targetKey);
   };
-  add = () => {
-    const panes = this.state.panes;
-    const activeKey = `newTab${this.newTabIndex++}`;
-    panes.push({
-      title: "New Tab",
-      content: "Content of new Tab",
-      key: activeKey
-    });
-    this.setState({ panes, activeKey });
-  };
+
   remove = targetKey => {
     this.props.removeTab(targetKey);
   };
@@ -64,7 +56,11 @@ class MainTab extends Component {
       >
         {this.props.panes.map(pane => {
           return (
-            <TabPane tab={pane.title} key={pane.key} closable={pane.closable}>
+            <TabPane
+              tab={tabsTitle[pane.key]}
+              key={pane.key}
+              closable={pane.closable}
+            >
               {components[pane.key]}
             </TabPane>
           );
@@ -82,7 +78,10 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {
-  removeTab,
-  changeTab
-})(MainTab);
+export default connect(
+  mapStateToProps,
+  {
+    removeTab,
+    changeTab
+  }
+)(MainTab);

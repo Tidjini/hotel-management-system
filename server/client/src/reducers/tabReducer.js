@@ -3,8 +3,7 @@ import { ADD_TAB, REMOVE_TAB, CHANGE_TAB } from "../actions/types";
 const INITIAL_STATE = {
   panes: [
     {
-      title: "Home",
-      content: "Home",
+      title: "Accueil",
       key: "Home",
       closable: false
     }
@@ -21,7 +20,6 @@ export default (state = INITIAL_STATE, actions) => {
     case ADD_TAB:
       const pane = {
         title: tab,
-        content: "eaz",
         key: tab
       };
 

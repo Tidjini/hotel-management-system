@@ -24,6 +24,7 @@ class LeftMenu extends Component {
       current: e.key
     });
     console.log(e.key);
+
     this.props.addTab(e.key);
     console.log(this.props.Current);
     //this.props.handleClick(e);
