@@ -39,6 +39,7 @@ class MainTab extends Component {
     //this.setState({ activeKey });
   };
   onEdit = (targetKey, action) => {
+    if (action == "add") return;
     this[action](targetKey);
   };
 

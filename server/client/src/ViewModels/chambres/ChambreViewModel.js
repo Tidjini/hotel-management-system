@@ -42,6 +42,23 @@ export const fields = [
 
 export const columns = [
   {
+    title: "État",
+    dataIndex: "etat",
+    key: "etat",
+    editable: true,
+    render: etat => (
+      <span
+        style={{
+          padding: "3px 18px",
+          backgroundColor: chambreStateColors[etat],
+          borderRadius: 3
+        }}
+      >
+        {chambreState[etat]}
+      </span>
+    )
+  },
+  {
     title: "Numéro",
     dataIndex: "num",
     key: "num",
@@ -60,23 +77,7 @@ export const columns = [
     key: "vue",
     editable: true
   },
-  {
-    title: "Etat",
-    dataIndex: "etat",
-    key: "etat",
-    editable: true,
-    render: etat => (
-      <span
-        style={{
-          padding: "3px 18px",
-          backgroundColor: chambreStateColors[etat],
-          borderRadius: 3
-        }}
-      >
-        {chambreState[etat]}
-      </span>
-    )
-  },
+
   {
     title: "Nombre Lits",
     dataIndex: "nombreLit",
