@@ -26,20 +26,12 @@ class MainTab extends Component {
     };
   }
 
-  componentWillMount() {
-    const tabs = this.props.Tabs;
-
-    const panes = [];
-  }
-
-  componentDidMount() {}
-
   onChange = activeKey => {
     this.props.changeTab(activeKey);
     //this.setState({ activeKey });
   };
   onEdit = (targetKey, action) => {
-    if (action == "add") return;
+    if (action === "add") return;
     this[action](targetKey);
   };
 

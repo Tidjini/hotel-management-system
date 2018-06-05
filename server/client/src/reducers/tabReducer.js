@@ -37,7 +37,7 @@ export default (state = INITIAL_STATE, actions) => {
       if (index > -1) {
         panes.splice(index, 1);
         tabs.splice(index, 1);
-        const activeIndex = index == 0 ? 0 : index - 1;
+        const activeIndex = index === 0 ? 0 : index - 1;
         return { ...state, panes, current: tabs[activeIndex] };
       } else {
         return state;

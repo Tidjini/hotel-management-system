@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { fields } from "./../../ViewModels/chambres/ChambreViewModel";
-import { Form, Row, Col, Input, Button, Icon, InputNumber, Card } from "antd";
+import { Form, Row, Col, Input, Button, Card } from "antd";
 
 import { connect } from "react-redux";
 import { addChambre, fetchChambres } from "./../../actions";
@@ -8,14 +7,13 @@ import ConfirmationModal from "./../common/ConfirmationModal";
 
 const FormItem = Form.Item;
 
-class ChambreView extends React.Component {
+class ChambreView extends Component {
   state = {
     id: this.props.id || "",
     num: this.props.num || "",
     type: this.props.type || "",
     vue: this.props.vue || "",
     etat: this.props.etat || "",
-    nombreLit: this.props.nombreLit || 1,
     nombreLit: this.props.nombreLit || 1,
     price: this.props.price || 0,
     showConfirmation: false,

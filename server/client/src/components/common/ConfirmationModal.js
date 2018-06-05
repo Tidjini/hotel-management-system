@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Button } from "antd";
+import { Modal } from "antd";
 
 export default class ConfimationModal extends React.Component {
   state = {
@@ -23,7 +23,7 @@ export default class ConfimationModal extends React.Component {
     this.props.onCancel();
   };
   render() {
-    const { visible, confirmLoading, ModalText } = this.state;
+    const { confirmLoading, ModalText } = this.state;
     return (
       <div>
         <Modal

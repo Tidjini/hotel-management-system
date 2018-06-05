@@ -1,6 +1,5 @@
 import React from "react";
-import { Popconfirm, Button } from "antd";
-const EditableContext = React.createContext();
+import { Button } from "antd";
 
 const ActionsColumn = ({
   editable,
@@ -16,11 +15,7 @@ const ActionsColumn = ({
       {editable ? (
         <span>
           {EditableContext}
-          <a
-            href="javascript:;"
-            onClick={() => cancel(record.key)}
-            style={{ marginLeft: 8 }}
-          >
+          <a onClick={() => cancel(record.key)} style={{ marginLeft: 8 }}>
             Cancel
           </a>
         </span>
@@ -35,19 +30,5 @@ const ActionsColumn = ({
     </div>
   );
 };
-
-{
-  /* <EditableContext.Consumer>
-{form => (
-  <a
-    href="javascript:;"
-    onClick={() => save(form, record.key)}
-    style={{ marginRight: 8 }}
-  >
-    Save
-  </a>
-)}
-</EditableContext.Consumer> */
-}
 
 export { ActionsColumn };

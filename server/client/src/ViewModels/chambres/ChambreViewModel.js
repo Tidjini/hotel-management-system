@@ -1,5 +1,4 @@
 import React from "react";
-import { Divider, Icon, Tag } from "antd";
 import { chambreState, chambreStateColors } from "./../../helpers/base";
 
 export const fields = [
