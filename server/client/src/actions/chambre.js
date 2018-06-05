@@ -30,7 +30,8 @@ export const deleteChambre = chambreId => async (dispatch, getState, api) => {
 };
 
 export const updateChambre = chambre => async (dispatch, getState, api) => {
-  const res = await api.patch("/chambres/" + chambre._id);
+  console.log(chambre);
+  const res = await api.patch("/chambres/" + chambre._id, chambre);
   dispatch({
     type: UPDATE_CHAMBRE,
     payload: res

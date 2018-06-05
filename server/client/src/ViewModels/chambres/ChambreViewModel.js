@@ -43,55 +43,39 @@ export const columns = [
   {
     title: "Numéro",
     dataIndex: "num",
-    key: "num"
+    key: "num",
+    editable: true
   },
   {
     title: "Type",
     dataIndex: "type",
     key: "type",
-    render: type => type
+    render: type => type,
+    editable: true
   },
   {
     title: "Vue",
     dataIndex: "vue",
-    key: "vue"
+    key: "vue",
+    editable: true
   },
   {
     title: "Etat",
     dataIndex: "etat",
-    key: "etat"
+    key: "etat",
+    editable: true
   },
   {
     title: "Nombre Lits",
     dataIndex: "nombreLit",
-    key: "nombreLit"
+    key: "nombreLit",
+    editable: true
   },
   {
     title: "Prix",
     dataIndex: "price",
     key: "price",
-    render: price => `${price.formatMoney(2, ",", " ")} DA`
-  },
-  {
-    title: "Action",
-    key: "action",
-    render: (text, record) => (
-      <span>
-        <a href="javascript:;"> 一 Chambre N° {record.num}</a>
-        <Divider type="vertical" />
-        <Tag color="red">
-          <a href="javascript:;" type="danger">
-            Delete
-          </a>
-        </Tag>
-
-        <Divider type="vertical" />
-        <Tag color="green">
-          <a href="javascript:;" type="danger">
-            Edit
-          </a>
-        </Tag>
-      </span>
-    )
+    render: price => `${price.formatMoney(2, ",", " ")} DA`,
+    editable: true
   }
 ];
