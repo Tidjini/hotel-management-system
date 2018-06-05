@@ -16,8 +16,17 @@ const CompleteLogo = () => {
         type="database"
         style={{ color: "#FFF", fontSize: 16, marginRight: 5 }}
       />
-      <h3 style={{ color: "#FFF", fontSize: 16, padding: 0, margin: 0 }}>
-        Hotel Management
+      <h3
+        style={{
+          color: "#FFF",
+          fontSize: 12,
+          fontWeight: 500,
+
+          padding: 0,
+          margin: 0
+        }}
+      >
+        HOTEL MANAGEMENT
       </h3>
     </div>
   );
