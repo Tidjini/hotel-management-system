@@ -1,5 +1,5 @@
 import React from "react";
-import { Popconfirm } from "antd";
+import { Popconfirm, Button } from "antd";
 const EditableContext = React.createContext();
 
 const ActionsColumn = ({
@@ -7,6 +7,7 @@ const ActionsColumn = ({
   save,
   cancel,
   edit,
+  removeContext,
   record,
   EditableContext
 }) => {
@@ -24,7 +25,12 @@ const ActionsColumn = ({
           </a>
         </span>
       ) : (
-        <a onClick={() => edit(record.key)}>Edit</a>
+        <span>
+          <Button onClick={() => edit(record.key)} type="warning" size="small">
+            Edit
+          </Button>
+          {removeContext}
+        </span>
       )}
     </div>
   );

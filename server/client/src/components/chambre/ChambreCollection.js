@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchChambres, updateChambre } from "./../../actions";
-import { Table, Form, Input, InputNumber, Popconfirm } from "antd";
+import { fetchChambres, updateChambre, deleteChambre } from "./../../actions";
+import { Table, Form, Input, InputNumber, Popconfirm, Button } from "antd";
 import { columns } from "./../../ViewModels/chambres/ChambreViewModel";
 import { ActionsColumn } from "./../common/ActionsColumn";
 
@@ -66,7 +66,7 @@ class EditableCell extends Component {
 class ChambreCollection extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { editingKey: "" };
+    this.state = { editingKey: "", actionsDisplayed: false };
     const actionsColumn = {
       title: "Action",
       key: "action",
@@ -79,6 +79,24 @@ class ChambreCollection extends React.Component {
             cancel={this.cancel.bind(this)}
             edit={this.edit.bind(this)}
             save={this.save.bind(this)}
+            removeContext={
+              <EditableContext.Consumer>
+                {form => (
+                  <Popconfirm
+                    title="Vous est sure de vouloir supprimer cette element?"
+                    onConfirm={() => this.remove(record.key)}
+                  >
+                    <Button
+                      type="danger"
+                      style={{ marginLeft: 8 }}
+                      size="small"
+                    >
+                      delete
+                    </Button>
+                  </Popconfirm>
+                )}
+              </EditableContext.Consumer>
+            }
             EditableContext={
               <EditableContext.Consumer>
                 {form => (
@@ -96,6 +114,11 @@ class ChambreCollection extends React.Component {
       }
     };
 
+    const actionIndex = columns.findIndex(col => col["key"] === "action");
+
+    if (actionIndex > -1) {
+      columns.splice(actionIndex, 1);
+    }
     columns.push(actionsColumn);
   }
   isEditing = record => {
@@ -124,8 +147,15 @@ class ChambreCollection extends React.Component {
     this.setState({ editingKey: "" });
   };
 
+  remove(key) {
+    this.props.deleteChambre(key);
+    this.props.fetchChambres();
+  }
+
+  handleAdd = () => {};
   componentWillMount() {
     this.props.fetchChambres();
+
     console.log(this.props.chambres);
   }
   render() {
@@ -157,14 +187,17 @@ class ChambreCollection extends React.Component {
       };
     });
     return (
-      <Table
-        components={components}
-        bordered
-        size="middle"
-        dataSource={this.props.chambres}
-        columns={cols}
-        rowClassName="editable-row"
-      />
+      <div>
+        <Button onClick={this.handleAdd.bind(this)}>Add Row</Button>
+        <Table
+          components={components}
+          bordered
+          size="middle"
+          dataSource={this.props.chambres}
+          columns={cols}
+          rowClassName="editable-row"
+        />
+      </div>
     );
   }
 }
@@ -178,5 +211,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchChambres, updateChambre }
+  { fetchChambres, updateChambre, deleteChambre }
 )(ChambreCollection);

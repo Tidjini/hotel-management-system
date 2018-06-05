@@ -18,3 +18,11 @@ export const moneyFormat = function(c, d, t) {
       : "")
   );
 };
+
+export const chambreState = [
+  "Vider la chambre",
+  "Netoyage",
+  "Cleaner",
+  "État 4"
+];
+export const chambreStateColors = ["#B3E9E4", "#F6ACB5", "#FFDCAC", "#B9BFC4"];

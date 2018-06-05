@@ -1,5 +1,6 @@
 import React from "react";
 import { Divider, Icon, Tag } from "antd";
+import { chambreState, chambreStateColors } from "./../../helpers/base";
 
 export const fields = [
   {
@@ -63,7 +64,18 @@ export const columns = [
     title: "Etat",
     dataIndex: "etat",
     key: "etat",
-    editable: true
+    editable: true,
+    render: etat => (
+      <span
+        style={{
+          padding: "3px 18px",
+          backgroundColor: chambreStateColors[etat],
+          borderRadius: 3
+        }}
+      >
+        {chambreState[etat]}
+      </span>
+    )
   },
   {
     title: "Nombre Lits",
