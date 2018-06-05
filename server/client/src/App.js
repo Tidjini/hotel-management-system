@@ -6,6 +6,7 @@ import MainTab from "./components/Tabs/MainTab";
 import LeftMenu from "./components/common/LeftMenu";
 import AppHeader from "./components/common/Header";
 import AppFooter from "./components/common/AppFooter";
+import { moneyFormat } from "./helpers/base";
 
 import { Layout } from "antd";
 const { Content } = Layout;
@@ -52,4 +53,9 @@ class App extends Component {
 }
 
 //C:\Program Files\MongoDB\Server\3.6\bin>mongod.exe --dbpath "C:\Users\Messaoudi Tidjini\mongo-data"
+//"C:\Users\Tijiniou\mongo-data"
+
 export default App;
+
+//basic function
+Number.prototype.formatMoney = moneyFormat;

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addTab } from "./../../actions";
-
+import { CompleteLogo, MiniLogo } from "./Logo";
 import { Layout, Menu, Icon } from "antd";
 const { Sider } = Layout;
 const SubMenu = Menu.SubMenu;
@@ -9,11 +9,15 @@ const SubMenu = Menu.SubMenu;
 class LeftMenu extends Component {
   state = {
     collapsed: false,
-    current: "Home"
+    current: "Home",
+    logo: <CompleteLogo />
   };
   onCollapse = collapsed => {
     console.log(collapsed);
-    this.setState({ collapsed });
+    this.setState({
+      collapsed,
+      logo: collapsed ? <MiniLogo /> : <CompleteLogo />
+    });
   };
   handleClick = e => {
     this.setState({
@@ -31,14 +35,7 @@ class LeftMenu extends Component {
         collapsed={this.state.collapsed}
         onCollapse={this.onCollapse}
       >
-        <div
-          className="logo"
-          style={{
-            height: "32px",
-            background: "rgba(255, 255, 255, 0.2)",
-            margin: "16px"
-          }}
-        />
+        {this.state.logo}
         <Menu
           theme="dark"
           defaultSelectedKeys={["1"]}
@@ -89,6 +86,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {
-  addTab
-})(LeftMenu);
+export default connect(
+  mapStateToProps,
+  {
+    addTab
+  }
+)(LeftMenu);

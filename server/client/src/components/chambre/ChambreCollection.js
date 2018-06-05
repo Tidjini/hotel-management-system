@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchChambres } from "./../../actions";
-
 import { Table } from "antd";
 
 const columns = [
@@ -48,7 +47,6 @@ class ChambreCollection extends React.Component {
     return (
       <Table
         bordered
-        
         size="middle"
         dataSource={this.props.chambres}
         columns={columns}
@@ -64,25 +62,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { fetchChambres })(ChambreCollection);
-
-Number.prototype.formatMoney = function(c, d, t) {
-  var n = this,
-    c = isNaN((c = Math.abs(c))) ? 2 : c,
-    d = d == undefined ? "." : d,
-    t = t == undefined ? "," : t,
-    s = n < 0 ? "-" : "",
-    i = String(parseInt((n = Math.abs(Number(n) || 0).toFixed(c)))),
-    j = (j = i.length) > 3 ? j % 3 : 0;
-  return (
-    s +
-    (j ? i.substr(0, j) + t : "") +
-    i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) +
-    (c
-      ? d +
-        Math.abs(n - i)
-          .toFixed(c)
-          .slice(2)
-      : "")
-  );
-};
+export default connect(
+  mapStateToProps,
+  { fetchChambres }
+)(ChambreCollection);

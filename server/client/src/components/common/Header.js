@@ -6,7 +6,7 @@ const { Header } = Layout;
 export default class AppHeader extends Component {
   render() {
     return (
-      <Header style={{ background: "#CCC", padding: 0, height: 50 }}>
+      <Header style={{ background: "#B6C2CE", padding: 0, height: 50 }}>
         <div />
       </Header>
     );
