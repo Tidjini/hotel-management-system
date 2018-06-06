@@ -9,6 +9,12 @@ export const SAVE_CHAMBRE = "save_chambre";
 export const DELETE_CHAMBRE = "delete_chambre";
 export const UPDATE_CHAMBRE = "update_chambre";
 
+/**famille */
+export const FETCH_FAMILLE = "fetch_famille";
+export const SAVE_FAMILLE = "save_famille";
+export const DELETE_FAMILLE = "delete_famille";
+export const UPDATE_FAMILLE = "update_famille";
+
 /**Tabs */
 export const ADD_TAB = "add_tab";
 export const REMOVE_TAB = "remove_tab";
