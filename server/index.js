@@ -13,6 +13,7 @@ app.use(bodyParser.json());
 
 require("./routes/ChambreRouteHandler")(app);
 require("./routes/FamilleRouteHandler")(app);
+require("./routes/TypeServiceRouteHandler")(app);
 
 //guests
 app.post("/api/guests", (req, res) => {
