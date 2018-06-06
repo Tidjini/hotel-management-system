@@ -11,6 +11,7 @@ app.use(bodyParser.json());
 require("./routes/ChambreRouteHandler")(app);
 require("./routes/FamilleRouteHandler")(app);
 require("./routes/TypeServiceRouteHandler")(app);
+require("./routes/ClientRouteHandler")(app);
 
 const PORT = process.env.PORT;
 
