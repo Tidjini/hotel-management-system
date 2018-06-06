@@ -56,7 +56,7 @@ module.exports = app => {
       return res.status(404).send();
     }
 
-    const body = _.pick(req.body, ["LibFam", "ImpCuis", "TFAm"]);
+    const body = _.pick(req.body, ["LibFam", "ImpCuis", "TFam"]);
 
     Famille.findOneAndUpdate({ _id: id }, { $set: body }, { new: true })
       .then(famille => {

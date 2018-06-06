@@ -20,13 +20,11 @@ export default class Configurations extends Component {
             <Divider type="vertical" />
             <div>
               <h3>Type de Service</h3>
-              <Fammilles />
             </div>
           </div>
           <div style={{ display: "flex" }}>
             <div>
               <h3>Type de restaurations</h3>
-              <Fammilles />
             </div>
           </div>
         </TabPane>

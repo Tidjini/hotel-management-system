@@ -8,6 +8,9 @@
     },
     "/api/chambres": {
       "target": "http://localhost:5000"
+    },
+    "api/familles": {
+      "target": "http://localhost:5000"
     }
   },
   "dependencies": {

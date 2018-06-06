@@ -1,9 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchFamilles, updateFamille, deleteFamille } from "./../../actions";
+import {
+  fetchFamilles,
+  updateFamille,
+  deleteFamille,
+  addFamille
+} from "./../../actions";
 import { Table, Form, Input, InputNumber, Popconfirm, Button } from "antd";
-import { columns } from "./../../ViewModels/familles/familleHelper";
+import { columns, fields } from "./../../ViewModels/familles/familleHelper";
 import { ActionsColumn } from "./../common/ActionsColumn";
+import ConfigurationForm from "./ConfigurationForm";
 
 const FormItem = Form.Item;
 
@@ -66,7 +72,11 @@ class EditableCell extends Component {
 class Familles extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { editingKey: "", actionsDisplayed: false };
+    this.state = {
+      editingKey: "",
+      actionsDisplayed: false,
+      addFormVisible: false
+    };
     const actionsColumn = {
       title: "Action",
       key: "action",
@@ -133,12 +143,12 @@ class Familles extends React.Component {
       if (error) {
         return;
       }
-
-      const chambreUpdated = {
+      console.log(row);
+      const familleUpdated = {
         _id: key,
         ...row
       };
-      this.props.updateFamille(chambreUpdated);
+      this.props.updateFamille(familleUpdated);
       this.props.fetchFamilles();
     });
     this.setState({ editingKey: "" });
@@ -153,7 +163,21 @@ class Familles extends React.Component {
   }
 
   handleAdd = () => {
-    this.props.addTab("ChambreView");
+    this.setState({
+      addFormVisible: true
+    });
+  };
+  handleAddData = values => {
+    this.props.addFamille(values);
+    this.props.fetchFamilles();
+    this.setState({
+      addFormVisible: false
+    });
+  };
+  closeForm = () => {
+    this.setState({
+      addFormVisible: false
+    });
   };
   componentWillMount() {
     this.props.fetchFamilles();
@@ -177,9 +201,7 @@ class Familles extends React.Component {
         onCell: record => ({
           record,
           inputType:
-            col.dataIndex === "etat" ||
-            col.dataIndex === "nombreLit" ||
-            col.dataIndex === "price"
+            col.dataIndex === "TFam" || col.dataIndex === "ImpCuis"
               ? "number"
               : "text",
           dataIndex: col.dataIndex,
@@ -190,11 +212,19 @@ class Familles extends React.Component {
     });
     return (
       <div>
+        <ConfigurationForm
+          key="newFamille"
+          visible={this.state.addFormVisible}
+          title="Ajouter une nouvelle famille"
+          fields={fields}
+          addFormData={this.handleAddData.bind(this)}
+          closeForm={this.closeForm.bind(this)}
+        />
         <Button
           onClick={this.handleAdd.bind(this)}
           style={{ marginBottom: 10 }}
         >
-          Ajouter une nouvelle chambre
+          Ajouter une nouvelle Famille
         </Button>
         <Table
           components={components}
@@ -203,7 +233,7 @@ class Familles extends React.Component {
           dataSource={this.props.familles}
           columns={cols}
           rowClassName="editable-row"
-          pagination={{ pageSize: 4 }}
+          pagination={{ pageSize: 6 }}
         />
       </div>
     );
@@ -219,5 +249,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchFamilles, updateFamille, deleteFamille }
+  { fetchFamilles, updateFamille, deleteFamille, addFamille }
 )(Familles);

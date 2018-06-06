@@ -16,7 +16,7 @@ export default (state = INITIAL_STATE, actions) => {
   const familles = [];
   switch (actions.type) {
     case FETCH_FAMILLE:
-      actions.payload.data.familles.forEach(element => {
+      actions.payload.data.famille.forEach(element => {
         familles.push({ ...element, key: element._id });
       });
       return { ...state, familles };

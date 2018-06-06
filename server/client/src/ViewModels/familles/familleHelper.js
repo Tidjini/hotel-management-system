@@ -5,6 +5,32 @@ import {
   familleTFam
 } from "./../../helpers/base";
 
+export const fields = [
+  {
+    field: "LibFam",
+    label: "Libelé",
+    required: true,
+    maxLength: 10,
+    minLength: 1,
+    type: String,
+    inputType: "normal"
+  },
+  {
+    field: "ImpCuis",
+    label: "Imprime Cuisine",
+    type: Number,
+    data: familleImpCuis,
+    inputType: "selector"
+  },
+  {
+    field: "TFam",
+    label: "Type de famille",
+    type: Number,
+    data: familleTFam,
+    inputType: "selector"
+  }
+];
+
 export const columns = [
   {
     title: "Libellé",
@@ -20,9 +46,8 @@ export const columns = [
     render: impCuis => (
       <span
         style={{
-          padding: "3px 18px",
-          backgroundColor: familleImpCuisColors[impCuis],
-          borderRadius: 3
+          color: familleImpCuisColors[impCuis],
+          fontWeight: 600
         }}
       >
         {familleImpCuis[impCuis]}
@@ -37,9 +62,8 @@ export const columns = [
     render: tFam => (
       <span
         style={{
-          padding: "3px 18px",
-          backgroundColor: familleImpCuisColors[tFam],
-          borderRadius: 3
+          color: familleImpCuisColors[tFam],
+          fontWeight: 600
         }}
       >
         {familleTFam[tFam]}
