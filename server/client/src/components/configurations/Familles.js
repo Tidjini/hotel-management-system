@@ -7,7 +7,10 @@ import {
   addFamille
 } from "./../../actions";
 import { Table, Form, Input, InputNumber, Popconfirm, Button } from "antd";
-import { columns, fields } from "./../../ViewModels/familles/familleHelper";
+import {
+  columns,
+  fields
+} from "./../../ViewModels/configurations/familleHelper";
 import { ActionsColumn } from "./../common/ActionsColumn";
 import ConfigurationForm from "./ConfigurationForm";
 
