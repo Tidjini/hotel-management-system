@@ -6,6 +6,7 @@ import chambreReducer from "./chambreReducer";
 import tabReducer from "./tabReducer";
 import familleReducer from "./familleReducer";
 import typeServiceReducer from "./typeServiceReducer";
+import clientReducer from "./clientReducer";
 
 export default combineReducers({
   guests: GuestsReducer,
@@ -14,5 +15,6 @@ export default combineReducers({
   chambresData: chambreReducer,
   tabsObject: tabReducer,
   famillesData: familleReducer,
-  typeServicesData: typeServiceReducer
+  typeServicesData: typeServiceReducer,
+  clientData: clientReducer
 });
