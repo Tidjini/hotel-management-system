@@ -49,7 +49,7 @@ export const columns = [
     render: service => (
       <span
         style={{
-          color: typeService[service],
+          color: "#092422",
           fontWeight: 600
         }}
       >
