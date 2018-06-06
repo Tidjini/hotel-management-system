@@ -7,7 +7,7 @@ export default class Configurations extends Component {
     return (
       <Tabs
         defaultActiveKey="services"
-        tabPosition="Vertical"
+        tabPosition="left"
         style={{ height: 220 }}
       >
         <TabPane tab="Services" key="services">

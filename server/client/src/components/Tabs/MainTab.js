@@ -5,6 +5,7 @@ import { removeTab, changeTab } from "./../../actions";
 import Home from "./../home/Home";
 import ChambreView from "./../chambre/ChambreView";
 import ChambreCollection from "./../chambre/ChambreCollection";
+import Configurations from "./../configurations/Configuartion";
 
 import { tabsTitle } from "./../../helpers/tabs";
 import { Tabs } from "antd";
@@ -13,7 +14,8 @@ const TabPane = Tabs.TabPane;
 const components = {
   Home: <Home />,
   ChambreCollection: <ChambreCollection />,
-  ChambreView: <ChambreView />
+  ChambreView: <ChambreView />,
+  Configuration: <Configurations />
 };
 class MainTab extends Component {
   constructor(props) {
