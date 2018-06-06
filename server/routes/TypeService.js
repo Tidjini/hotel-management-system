@@ -51,18 +51,19 @@ module.exports = app => {
     );
   });
 
-  app.patch("/api/familles/:id", (req, res) => {
+  app.patch("/api/typeServices/:id", (req, res) => {
     const id = req.params.id;
     if (!ObjectID.isValid(id)) {
       return res.status(404).send();
     }
 
-    const body = _.pick(req.body, ["LibFam", "ImpCuis", "TFam"]);
+    const body = _.pick(req.body, ["Code", "Libelle", "Service"]);
 
-    Famille.findOneAndUpdate({ _id: id }, { $set: body }, { new: true })
-      .then(famille => {
-        if (famille == null) return res.status(404).send("Famille not found");
-        res.send({ famille });
+    TypeService.findOneAndUpdate({ _id: id }, { $set: body }, { new: true })
+      .then(typeService => {
+        if (typeService == null)
+          return res.status(404).send("type Service not found");
+        res.send({ typeService });
       })
       .catch(err => {
         res.status(400).send();
