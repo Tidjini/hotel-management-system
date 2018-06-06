@@ -6,7 +6,7 @@ import {
 } from "./types";
 
 export const fetchTypeServices = () => async (dispatch, getState, api) => {
-  const res = await api.get("/TypeServices");
+  const res = await api.get("/typeServices");
   dispatch({
     type: FETCH_TYPE_SERVICE,
     payload: res
@@ -18,7 +18,7 @@ export const addTypeService = TypeService => async (
   getState,
   api
 ) => {
-  const res = await api.post("/TypeServices", TypeService);
+  const res = await api.post("/typeServices", TypeService);
   dispatch({
     type: SAVE_TYPE_SERVICE,
     payload: res
@@ -30,7 +30,7 @@ export const deleteTypeService = TypeServiceId => async (
   getState,
   api
 ) => {
-  const res = await api.delete("/TypeServices/" + TypeServiceId);
+  const res = await api.delete("/typeServices/" + TypeServiceId);
   dispatch({
     type: DELETE_TYPE_SERVICE,
     payload: res
@@ -42,7 +42,7 @@ export const updateTypeService = TypeService => async (
   getState,
   api
 ) => {
-  const res = await api.patch("/TypeServices/" + TypeService._id, TypeService);
+  const res = await api.patch("/typeServices/" + TypeService._id, TypeService);
   dispatch({
     type: UPDATE_TYPE_SERVICE,
     payload: res

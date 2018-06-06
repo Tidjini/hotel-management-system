@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
-  fetchFamilles,
-  updateFamille,
-  deleteFamille,
-  addFamille
+  fetchTypeServices,
+  updateTypeService,
+  deleteTypeService,
+  addTypeService
 } from "./../../actions";
 import { Table, Form, Input, InputNumber, Popconfirm, Button } from "antd";
 import {
   columns,
   fields
-} from "./../../ViewModels/configurations/familleHelper";
+} from "./../../ViewModels/configurations/typeServiceHelper";
 import { ActionsColumn } from "./../common/ActionsColumn";
 import ConfigurationForm from "./ConfigurationForm";
 
@@ -72,7 +72,7 @@ class EditableCell extends Component {
   }
 }
 
-class Familles extends React.Component {
+class TypeService extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -147,12 +147,12 @@ class Familles extends React.Component {
         return;
       }
       console.log(row);
-      const familleUpdated = {
+      const TypeServiceUpdated = {
         _id: key,
         ...row
       };
-      this.props.updateFamille(familleUpdated);
-      this.props.fetchFamilles();
+      this.props.updateTypeService(TypeServiceUpdated);
+      this.props.fetchTypeServices();
     });
     this.setState({ editingKey: "" });
   }
@@ -161,8 +161,8 @@ class Familles extends React.Component {
   };
 
   remove(key) {
-    this.props.deleteFamille(key);
-    this.props.fetchFamilles();
+    this.props.deleteTypeService(key);
+    this.props.fetchTypeServices();
   }
 
   handleAdd = () => {
@@ -171,8 +171,8 @@ class Familles extends React.Component {
     });
   };
   handleAddData = values => {
-    this.props.addFamille(values);
-    this.props.fetchFamilles();
+    this.props.addTypeService(values);
+    this.props.fetchTypeServices();
     this.setState({
       addFormVisible: false
     });
@@ -183,7 +183,7 @@ class Familles extends React.Component {
     });
   };
   componentWillMount() {
-    this.props.fetchFamilles();
+    this.props.fetchTypeServices();
   }
   render() {
     const components = {
@@ -201,10 +201,7 @@ class Familles extends React.Component {
         ...col,
         onCell: record => ({
           record,
-          inputType:
-            col.dataIndex === "TFam" || col.dataIndex === "ImpCuis"
-              ? "number"
-              : "text",
+          inputType: col.dataIndex === "Service" ? "number" : "text",
           dataIndex: col.dataIndex,
           title: col.title,
           editing: this.isEditing(record)
@@ -214,9 +211,9 @@ class Familles extends React.Component {
     return (
       <div>
         <ConfigurationForm
-          key="newFamille"
+          key="newTypeService"
           visible={this.state.addFormVisible}
-          title="Ajouter une nouvelle famille"
+          title="Ajouter un nouveau Type de Service"
           fields={fields}
           addFormData={this.handleAddData.bind(this)}
           closeForm={this.closeForm.bind(this)}
@@ -225,16 +222,16 @@ class Familles extends React.Component {
           onClick={this.handleAdd.bind(this)}
           style={{ marginBottom: 10 }}
         >
-          Ajouter une nouvelle Famille
+          Ajouter un nouveau type de Service
         </Button>
         <Table
           components={components}
           bordered
           size="middle"
-          dataSource={this.props.familles}
+          dataSource={this.props.typeServices}
           columns={cols}
           rowClassName="editable-row"
-          pagination={{ pageSize: 6 }}
+          pagination={{ pageSize: 10 }}
         />
       </div>
     );
@@ -242,13 +239,13 @@ class Familles extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const { familles } = state.famillesData;
+  const { typeServices } = state.typeServicesData;
   return {
-    familles
+    typeServices
   };
 };
 
 export default connect(
   mapStateToProps,
-  { fetchFamilles, updateFamille, deleteFamille, addFamille }
-)(Familles);
+  { fetchTypeServices, updateTypeService, deleteTypeService, addTypeService }
+)(TypeService);

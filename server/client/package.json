@@ -11,6 +11,9 @@
     },
     "api/familles": {
       "target": "http://localhost:5000"
+    },
+    "api/typeServices": {
+      "target": "http://localhost:5000"
     }
   },
   "dependencies": {

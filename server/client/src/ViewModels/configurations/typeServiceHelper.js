@@ -13,7 +13,7 @@ export const fields = [
   },
   {
     field: "Libelle",
-    label: "Code",
+    label: "Libelle",
     maxLength: 50,
     minLength: 1,
     type: String,

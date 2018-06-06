@@ -16,7 +16,7 @@ export default (state = INITIAL_STATE, actions) => {
   const typeServices = [];
   switch (actions.type) {
     case FETCH_TYPE_SERVICE:
-      actions.payload.data.typeServices.forEach(element => {
+      actions.payload.data.typeService.forEach(element => {
         typeServices.push({ ...element, key: element._id });
       });
       return { ...state, typeServices };
