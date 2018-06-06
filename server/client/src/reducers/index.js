@@ -12,5 +12,5 @@ export default combineReducers({
   guestDeleted: deleteReducer,
   chambresData: chambreReducer,
   tabsObject: tabReducer,
-  familleData: familleReducer
+  famillesData: familleReducer
 });

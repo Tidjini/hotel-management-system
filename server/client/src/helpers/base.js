@@ -26,3 +26,7 @@ export const chambreState = [
   "État 4"
 ];
 export const chambreStateColors = ["#B3E9E4", "#F6ACB5", "#FFDCAC", "#B9BFC4"];
+
+export const familleImpCuis = ["Désactiver", "Imprimable", "Autre"];
+export const familleTFam = ["Famille Corleon", "Bonbino", "Cosa"];
+export const familleImpCuisColors = ["#B3E9E4", "#F6ACB5", "#FFDCAC"];

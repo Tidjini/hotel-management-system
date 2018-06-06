@@ -1,13 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {
-  fetchChambres,
-  updateChambre,
-  deleteChambre,
-  addTab
-} from "./../../actions";
+import { fetchFamilles, updateFamille, deleteFamille } from "./../../actions";
 import { Table, Form, Input, InputNumber, Popconfirm, Button } from "antd";
-import { columns } from "./../../ViewModels/chambres/ChambreViewModel";
+import { columns } from "./../../ViewModels/familles/familleHelper";
 import { ActionsColumn } from "./../common/ActionsColumn";
 
 const FormItem = Form.Item;
@@ -143,8 +138,8 @@ class Familles extends React.Component {
         _id: key,
         ...row
       };
-      this.props.updateChambre(chambreUpdated);
-      this.props.fetchChambres();
+      this.props.updateFamille(chambreUpdated);
+      this.props.fetchFamilles();
     });
     this.setState({ editingKey: "" });
   }
@@ -153,15 +148,15 @@ class Familles extends React.Component {
   };
 
   remove(key) {
-    this.props.deleteChambre(key);
-    this.props.fetchChambres();
+    this.props.deleteFamille(key);
+    this.props.fetchFamilles();
   }
 
   handleAdd = () => {
     this.props.addTab("ChambreView");
   };
   componentWillMount() {
-    this.props.fetchChambres();
+    this.props.fetchFamilles();
 
     console.log(this.props.chambres);
   }
@@ -205,7 +200,7 @@ class Familles extends React.Component {
           components={components}
           bordered
           size="middle"
-          dataSource={this.props.chambres}
+          dataSource={this.props.familles}
           columns={cols}
           rowClassName="editable-row"
           pagination={{ pageSize: 4 }}
@@ -216,13 +211,13 @@ class Familles extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const { chambres } = state.chambresData;
+  const { familles } = state.famillesData;
   return {
-    chambres
+    familles
   };
 };
 
 export default connect(
   mapStateToProps,
-  { fetchChambres, updateChambre, deleteChambre, addTab }
+  { fetchFamilles, updateFamille, deleteFamille }
 )(Familles);

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Tabs } from "antd";
+import { Tabs, Divider } from "antd";
 import Fammilles from "./Familles";
 const TabPane = Tabs.TabPane;
 
@@ -17,6 +17,7 @@ export default class Configurations extends Component {
               <h3>Familles de produits</h3>
               <Fammilles />
             </div>
+            <Divider type="vertical" />
             <div>
               <h3>Type de Service</h3>
               <Fammilles />
