@@ -21,6 +21,12 @@ export const SAVE_TYPE_SERVICE = "save_type_service";
 export const DELETE_TYPE_SERVICE = "delete_type_service";
 export const UPDATE_TYPE_SERVICE = "update_type_service";
 
+/**Type Client */
+export const FETCH_CLIENT = "fetch_client";
+export const SAVE_CLIENT = "save_client";
+export const DELETE_CLIENT = "delete_client";
+export const UPDATE_CLIENT = "update_client";
+
 /**Tabs */
 export const ADD_TAB = "add_tab";
 export const REMOVE_TAB = "remove_tab";
