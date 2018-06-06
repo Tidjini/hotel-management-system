@@ -67,9 +67,9 @@ module.exports = app => {
       return res.status(404).send();
     }
     Client.findOneAndRemove({ _id: id }).then(
-      Client => {
-        if (Client == null) return res.status(404).send("Client not found");
-        res.send({ Client });
+      client => {
+        if (client == null) return res.status(404).send("Client not found");
+        res.send({ client });
       },
       err => {
         res.status(400).send();
@@ -84,18 +84,38 @@ module.exports = app => {
     }
 
     const body = _.pick(req.body, [
-      "num",
-      "type",
-      "vue",
-      "etat",
-      "nombreLit",
-      "price"
+      "Code",
+      "Nom",
+      "Prenom",
+      "Categorie",
+      "Nationalite",
+      "Sexe",
+      "Adresse",
+      "NumTel",
+      "NumFax",
+      "Mobile",
+      "Email",
+      "RC",
+      "NIS",
+      "IF",
+      "ART",
+      "ExoTva",
+      "ListNoir",
+      "President",
+      "ExoTimbre",
+      "ExoTaxChambre",
+      "NumPassport",
+      "DatePassport",
+      "VillePassport",
+      "CiNum",
+      "Deliv",
+      "CiVille"
     ]);
 
     Client.findOneAndUpdate({ _id: id }, { $set: body }, { new: true })
-      .then(Client => {
-        if (Client == null) return res.status(404).send("Client not found");
-        res.send({ Client });
+      .then(client => {
+        if (client == null) return res.status(404).send("Client not found");
+        res.send({ client });
       })
       .catch(err => {
         res.status(400).send();
