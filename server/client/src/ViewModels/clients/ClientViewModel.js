@@ -1,6 +1,40 @@
 import React from "react";
 import { clientState, clientStateColor } from "./../../helpers/base";
 
+export const panes = [
+  {
+    name: "General",
+    fields: [
+      {
+        field: "LibFam",
+        label: "Libelé",
+        required: true,
+        maxLength: 10,
+        minLength: 1,
+        type: String,
+        inputType: "normal"
+      },
+      {
+        field: "ImpCuis",
+        label: "Imprime Cuisine",
+        type: Number,
+        inputType: "number"
+      }
+    ]
+  },
+  {
+    name: "Autre",
+    fields: [
+      {
+        field: "TFam",
+        label: "Type de famille",
+        type: Number,
+        inputType: "number"
+      }
+    ]
+  }
+];
+
 export const columns = [
   {
     title: "Code",

@@ -7,6 +7,7 @@ import ChambreView from "./../chambre/ChambreView";
 import ChambreCollection from "./../chambre/ChambreCollection";
 import Configurations from "./../configurations/Configuartion";
 import ClientCollection from "./../client/ClientCollection";
+import ClientView from "./../client/ClientView";
 
 import { tabsTitle } from "./../../helpers/tabs";
 import { Tabs } from "antd";
@@ -17,7 +18,8 @@ const components = {
   ChambreCollection: <ChambreCollection />,
   ChambreView: <ChambreView />,
   Configuration: <Configurations />,
-  ClientCollection: <ClientCollection />
+  ClientCollection: <ClientCollection />,
+  ClientView: <ClientView />
 };
 class MainTab extends Component {
   constructor(props) {

@@ -32,7 +32,6 @@ class ConfigurationForm extends React.Component {
     const { getFieldDecorator } = this.props.form;
     const panes = this.props.panes;
     const children = [];
-
     panes.forEach((pane, index) => {
       children.push(
         <TabPane tab={pane.name} key={index}>
@@ -89,14 +88,7 @@ class ConfigurationForm extends React.Component {
 
   render() {
     return (
-      <Modal
-        title={this.props.title}
-        visible={this.props.visible}
-        onOk={this.handleAdd}
-        onCancel={this.handleCancel}
-        okText="Ajouter"
-        cancelText="Retour"
-      >
+      <div>
         <Form
           style={{
             padding: "24px",
@@ -114,7 +106,7 @@ class ConfigurationForm extends React.Component {
             </Col>
           </Row>
         </Form>
-      </Modal>
+      </div>
     );
   }
 }
