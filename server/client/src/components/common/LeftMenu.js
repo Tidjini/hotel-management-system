@@ -60,6 +60,12 @@ class LeftMenu extends Component {
             <Menu.Item key="ChambreCollection">List des chambre</Menu.Item>
             <Menu.Item key="ChambreView">Ajouter une chambre</Menu.Item>
           </SubMenu>
+          <Menu.Item key="ClientCollection">
+            <span>
+              <Icon type="user-add" />
+              <span>Clients</span>
+            </span>
+          </Menu.Item>
           <Menu.Item key="Configuration">
             <span>
               <Icon type="setting" />
