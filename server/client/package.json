@@ -14,6 +14,9 @@
     },
     "api/typeServices": {
       "target": "http://localhost:5000"
+    },
+    "api/clients": {
+      "target": "http://localhost:5000"
     }
   },
   "dependencies": {

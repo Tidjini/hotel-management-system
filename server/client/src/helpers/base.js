@@ -26,6 +26,7 @@ export const chambreState = [
   "État 4"
 ];
 export const clientState = ["Pas Inclus", "Inclus"];
+export const nationaliteList = ["Algérie", "France"];
 export const clientStateColor = ["#FF9F1C", "#E71D36"];
 
 export const chambreStateColors = ["#B3E9E4", "#F6ACB5", "#FFDCAC", "#B9BFC4"];

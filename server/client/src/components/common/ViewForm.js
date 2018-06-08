@@ -35,7 +35,7 @@ class ConfigurationForm extends React.Component {
     panes.forEach((pane, index) => {
       children.push(
         <TabPane tab={pane.name} key={index}>
-          {this.getFields(pane.fields)}
+          <Row gutter={24}>{this.getFields(pane.fields)}</Row>
         </TabPane>
       );
     });
@@ -47,18 +47,24 @@ class ConfigurationForm extends React.Component {
   getFields(fields) {
     const { getFieldDecorator } = this.props.form;
     const children = [];
-    fields.forEach(element => {
+    fields.forEach((element, index) => {
       children.push(
-        <FormItem label={element.label} key={element.field}>
-          {getFieldDecorator(element.field, {
-            rules: [
-              {
-                required: element.required,
-                message: "Champs requis"
-              }
-            ]
-          })(this.getInputType(element))}
-        </FormItem>
+        <Col span={8} key={index}>
+          <FormItem
+            label={element.label}
+            key={element.field}
+            style={{ display: "flex" }}
+          >
+            {getFieldDecorator(element.field, {
+              rules: [
+                {
+                  required: element.required,
+                  message: "Champs requis"
+                }
+              ]
+            })(this.getInputType(element))}
+          </FormItem>
+        </Col>
       );
     });
     return children;
@@ -71,7 +77,7 @@ class ConfigurationForm extends React.Component {
         break;
       case "selector":
         return (
-          <Select>
+          <Select style={{ minWidth: 170 }}>
             {element.data.map((d, index) => (
               <Option key={index} value={index}>
                 {d}
@@ -81,7 +87,7 @@ class ConfigurationForm extends React.Component {
         );
         break;
       default:
-        return <Input placeholder={element.label} />;
+        return <Input style={{ minWidth: 100 }} placeholder={element.label} />;
         break;
     }
   }
@@ -96,12 +102,20 @@ class ConfigurationForm extends React.Component {
             border: "1px solid #d9d9d9",
             borderRadius: " 6px"
           }}
+          onSubmit={this.handleAdd}
         >
           <Tabs>{this.getPanes()}</Tabs>
           <Row>
             <Col span={24} style={{ textAlign: "right" }}>
               <Button style={{ marginLeft: 8 }} onClick={this.handleReset}>
                 Clear
+              </Button>
+              <Button
+                style={{ marginLeft: 8 }}
+                type="primary"
+                htmlType="submit"
+              >
+                Save
               </Button>
             </Col>
           </Row>

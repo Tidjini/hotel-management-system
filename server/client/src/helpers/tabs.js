@@ -3,5 +3,6 @@ export const tabsTitle = {
   ChambreCollection: "Chambres",
   ChambreView: "Chambre",
   Configuration: "Configurations",
-  ClientCollection: "Clients"
+  ClientCollection: "Clients",
+  ClientView: "Client"
 };

@@ -1,13 +1,17 @@
 import React from "react";
-import { clientState, clientStateColor } from "./../../helpers/base";
+import {
+  clientState,
+  clientStateColor,
+  nationaliteList
+} from "./../../helpers/base";
 
 export const panes = [
   {
     name: "General",
     fields: [
       {
-        field: "LibFam",
-        label: "Libelé",
+        field: "Code",
+        label: "Code",
         required: true,
         maxLength: 10,
         minLength: 1,
@@ -15,21 +19,133 @@ export const panes = [
         inputType: "normal"
       },
       {
-        field: "ImpCuis",
-        label: "Imprime Cuisine",
+        field: "Nom",
+        label: "Nom",
+        maxLength: 50,
+        inputType: "normal"
+      },
+      {
+        field: "Prenom",
+        label: "Prénom",
+        maxLength: 50,
+        inputType: "normal"
+      },
+      {
+        field: "Categorie",
+        label: "Catégorie",
         type: Number,
-        inputType: "number"
+        data: ["Société", "Personel"],
+        inputType: "selector"
+      },
+      {
+        field: "Nationalite",
+        label: "Nationalité",
+        type: String,
+        data: nationaliteList,
+        inputType: "selector"
+      },
+      {
+        field: "Sexe",
+        label: "Sexe",
+        type: Number,
+        data: ["Homme", "Femme"],
+        inputType: "selector"
+      },
+      {
+        field: "Adresse",
+        label: "Adresse",
+        maxLength: 200,
+        inputType: "normal"
+      },
+      {
+        field: "NumTel",
+        label: "Numéro Tél",
+        maxLength: 30,
+        inputType: "normal"
+      },
+      {
+        field: "NumFax",
+        label: "Numéro Fax",
+        maxLength: 30,
+        inputType: "normal"
+      },
+      {
+        field: "Mobile",
+        label: "Mobile",
+        maxLength: 30,
+        inputType: "normal"
+      },
+      {
+        field: "Email",
+        label: "Email",
+        maxLength: 30,
+        inputType: "normal"
       }
     ]
   },
   {
-    name: "Autre",
+    name: "Fiscalité",
     fields: [
       {
-        field: "TFam",
-        label: "Type de famille",
+        field: "RC",
+        label: "R.C.",
+        maxLength: 30,
+        inputType: "normal"
+      },
+      {
+        field: "NIS",
+        label: "N.I.S.",
+        maxLength: 30,
+        inputType: "normal"
+      },
+      {
+        field: "IF",
+        label: "I.F.",
+        maxLength: 30,
+        inputType: "normal"
+      },
+      {
+        field: "ART",
+        label: "ART",
+        maxLength: 30,
+        inputType: "normal"
+      },
+      {
+        field: "ExoTva",
+        label: "Exo Tva",
+        inputType: "number",
+        type: Number
+      },
+      {
+        field: "ExoTimbre",
+        label: "Exo Timbre",
+        inputType: "number",
+        type: Number
+      },
+      {
+        field: "ExoTaxChambre",
+        label: "Exo Tax Chambre",
+        inputType: "number",
+        type: Number
+      }
+    ]
+  },
+  {
+    name: "Avancée",
+    fields: [
+      {
+        field: "ListNoir",
+        label: "List Noir",
         type: Number,
-        inputType: "number"
+        data: ["Non", "Oui"],
+        inputType: "selector"
+      },
+      {
+        field: "President",
+        label: "Président",
+        type: Number,
+        data: ["Non", "Oui"],
+        inputType: "selector"
       }
     ]
   }
