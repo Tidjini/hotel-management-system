@@ -35,7 +35,9 @@ class ConfigurationForm extends React.Component {
     panes.forEach((pane, index) => {
       children.push(
         <TabPane tab={pane.name} key={index}>
-          <Row gutter={24}>{this.getFields(pane.fields)}</Row>
+          <table style={{}}>
+            <tbody>{this.getFields(pane.fields)}</tbody>
+          </table>
         </TabPane>
       );
     });
@@ -49,22 +51,21 @@ class ConfigurationForm extends React.Component {
     const children = [];
     fields.forEach((element, index) => {
       children.push(
-        <Col span={8} key={index}>
-          <FormItem
-            label={element.label}
-            key={element.field}
-            style={{ display: "flex" }}
-          >
-            {getFieldDecorator(element.field, {
-              rules: [
-                {
-                  required: element.required,
-                  message: "Champs requis"
-                }
-              ]
-            })(this.getInputType(element))}
-          </FormItem>
-        </Col>
+        <tr>
+          <td style={{ fontWeight: 600, fontSize: 12 }}>{element.label}</td>
+          <td style={{ display: "flex", height: "40px" }}>
+            <FormItem key={element.field}>
+              {getFieldDecorator(element.field, {
+                rules: [
+                  {
+                    required: element.required,
+                    message: "Champs requis"
+                  }
+                ]
+              })(this.getInputType(element))}
+            </FormItem>
+          </td>
+        </tr>
       );
     });
     return children;
@@ -77,7 +78,7 @@ class ConfigurationForm extends React.Component {
         break;
       case "selector":
         return (
-          <Select style={{ minWidth: 170 }}>
+          <Select style={{ minWidth: 230 }}>
             {element.data.map((d, index) => (
               <Option key={index} value={index}>
                 {d}
@@ -95,6 +96,25 @@ class ConfigurationForm extends React.Component {
   render() {
     return (
       <div>
+        <table style={{ width: "100%" }}>
+          <tbody>
+            <tr>
+              <th>Firstname</th>
+              <th>Lastname</th>
+              <th>Age</th>
+            </tr>
+            <tr>
+              <td>Jill</td>
+              <td>Smith</td>
+              <td>50</td>
+            </tr>
+            <tr>
+              <td>Eve</td>
+              <td>Jackson</td>
+              <td>94</td>
+            </tr>
+          </tbody>
+        </table>
         <Form
           style={{
             padding: "24px",

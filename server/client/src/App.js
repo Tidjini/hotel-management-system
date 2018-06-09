@@ -35,13 +35,13 @@ class App extends Component {
 
   render() {
     return (
-      <Layout style={{ minHeight: "100vh" }}>
+      <Layout style={{ minHeight: "100vh", background: "#ECECEC" }}>
         <LeftMenu handleClick={this.handleLeftMenuClick} />
 
         <Layout>
           <AppHeader />
           <Content style={{}}>
-            <div style={{ padding: 24, background: "#fff", minHeight: 580 }}>
+            <div style={{ padding: 24, background: "#FEFEFE", minHeight: 580 }}>
               <MainTab />
             </div>
           </Content>
