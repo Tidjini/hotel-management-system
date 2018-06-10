@@ -34,11 +34,14 @@ class ConfigurationForm extends React.Component {
     const children = [];
     panes.forEach((pane, index) => {
       children.push(
-        <TabPane tab={pane.name} key={index}>
+        <Col span={pane.colspan} tab={pane.name} key={index}>
+          <h3>{pane.name}</h3>
           <table style={{}}>
-            <tbody>{this.getFields(pane.fields)}</tbody>
+            <tbody>
+              <tr>{this.getColumns(pane.columns)}</tr>
+            </tbody>
           </table>
-        </TabPane>
+        </Col>
       );
     });
 
@@ -46,12 +49,28 @@ class ConfigurationForm extends React.Component {
   }
 
   // To generate mock Form.Item
+
+  getColumns(colums) {
+    const children = [];
+    colums.forEach((column, index) => {
+      children.push(
+        <td key={index} valign="top">
+          <table style={{ marginLeft: "30px" }}>
+            <tbody>{this.getFields(column.fields)}</tbody>
+          </table>
+        </td>
+      );
+    });
+
+    return children;
+  }
+
   getFields(fields) {
     const { getFieldDecorator } = this.props.form;
     const children = [];
     fields.forEach((element, index) => {
       children.push(
-        <tr>
+        <tr key={index}>
           <td style={{ fontWeight: 600, fontSize: 12 }}>{element.label}</td>
           <td style={{ display: "flex", height: "40px" }}>
             <FormItem key={element.field}>
@@ -96,25 +115,6 @@ class ConfigurationForm extends React.Component {
   render() {
     return (
       <div>
-        <table style={{ width: "100%" }}>
-          <tbody>
-            <tr>
-              <th>Firstname</th>
-              <th>Lastname</th>
-              <th>Age</th>
-            </tr>
-            <tr>
-              <td>Jill</td>
-              <td>Smith</td>
-              <td>50</td>
-            </tr>
-            <tr>
-              <td>Eve</td>
-              <td>Jackson</td>
-              <td>94</td>
-            </tr>
-          </tbody>
-        </table>
         <Form
           style={{
             padding: "24px",
@@ -124,7 +124,8 @@ class ConfigurationForm extends React.Component {
           }}
           onSubmit={this.handleAdd}
         >
-          <Tabs>{this.getPanes()}</Tabs>
+          <Row>{this.getPanes()}</Row>
+          {/* <Tabs>{this.getPanes()}</Tabs> */}
           <Row>
             <Col span={24} style={{ textAlign: "right" }}>
               <Button style={{ marginLeft: 8 }} onClick={this.handleReset}>
