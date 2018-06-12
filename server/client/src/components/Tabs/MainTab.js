@@ -33,6 +33,8 @@ class MainTab extends Component {
   }
 
   onChange = activeKey => {
+    console.log(activeKey + " onchange maintab");
+
     this.props.changeTab(activeKey);
     //this.setState({ activeKey });
   };
@@ -56,11 +58,11 @@ class MainTab extends Component {
         {this.props.panes.map(pane => {
           return (
             <TabPane
-              tab={tabsTitle[pane.key]}
+              tab={tabsTitle[pane.title]}
               key={pane.key}
               closable={pane.closable}
             >
-              {components[pane.key]}
+              {components[pane.component]}
             </TabPane>
           );
         })}

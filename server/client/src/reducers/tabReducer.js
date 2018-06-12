@@ -3,26 +3,30 @@ import { ADD_TAB, REMOVE_TAB, CHANGE_TAB } from "../actions/types";
 const INITIAL_STATE = {
   panes: [
     {
-      title: "Accueil",
-      key: "Home",
-      closable: false
+      title: "Home",
+      key: "Home-new",
+      closable: false,
+      component: "Home"
     }
   ],
-  tabs: ["Home"],
-  current: "Home"
+  tabs: ["Home-new"],
+  current: "Home-new"
 };
 
 export default (state = INITIAL_STATE, actions) => {
   const { panes, tabs } = state;
-  const tab = actions.payload;
+  const tabInfo = actions.payload;
+  const tab = tabInfo == undefined ? "Home-new" : tabInfo[0] + "-" + tabInfo[1];
 
   switch (actions.type) {
     case ADD_TAB:
-      const pane = {
-        title: tab,
-        key: tab
-      };
+      console.log(tab + " add");
 
+      const pane = {
+        title: tabInfo[0],
+        key: tab,
+        component: tabInfo[0]
+      };
       const indexPane = tabs.indexOf(tab);
       if (indexPane > -1) {
         return { ...state, current: tab };
@@ -33,7 +37,10 @@ export default (state = INITIAL_STATE, actions) => {
       }
 
     case REMOVE_TAB:
+      console.log(tab + " remove");
+
       const index = tabs.indexOf(tab);
+
       if (index > -1) {
         panes.splice(index, 1);
         tabs.splice(index, 1);
@@ -44,7 +51,7 @@ export default (state = INITIAL_STATE, actions) => {
       }
 
     case CHANGE_TAB:
-      return { ...state, current: actions.payload };
+      return { ...state, current: tab };
     default:
       return state;
   }

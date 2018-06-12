@@ -49,7 +49,7 @@ class LeftMenu extends Component {
             <span>Accuiel</span>
           </Menu.Item>
 
-          <Menu.Item key="ClientCollection">
+          <Menu.Item key="ClientCollection-New">
             <span>
               <Icon type="user-add" />
               <span>Clients</span>
@@ -64,8 +64,12 @@ class LeftMenu extends Component {
               </span>
             }
           >
-            <Menu.Item key="ReservationSimple">Reservation simple</Menu.Item>
-            <Menu.Item key="ReservationGroupe">Reservation groupée</Menu.Item>
+            <Menu.Item key="ReservationSimple-New">
+              Reservation simple
+            </Menu.Item>
+            <Menu.Item key="ReservationGroupe-New">
+              Reservation groupée
+            </Menu.Item>
           </SubMenu>
           <SubMenu
             key="sub2"
@@ -76,10 +80,10 @@ class LeftMenu extends Component {
               </span>
             }
           >
-            <Menu.Item key="ChambreCollection">List des chambre</Menu.Item>
-            <Menu.Item key="ChambreView">Ajouter une chambre</Menu.Item>
+            <Menu.Item key="ChambreCollection-New">List des chambre</Menu.Item>
+            <Menu.Item key="ChambreView-New">Ajouter une chambre</Menu.Item>
           </SubMenu>
-          <Menu.Item key="Configuration">
+          <Menu.Item key="Configuration-New">
             <span>
               <Icon type="setting" />
               <span>Configuration</span>
