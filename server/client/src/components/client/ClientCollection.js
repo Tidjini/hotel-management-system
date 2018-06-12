@@ -131,7 +131,8 @@ class ClientCollection extends React.Component {
   };
 
   edit(key) {
-    this.setState({ editingKey: key });
+    this.props.addTab("ClientView-" + key);
+    //this.setState({ editingKey: key });
   }
   save(form, key) {
     form.validateFields((error, row) => {
@@ -158,7 +159,7 @@ class ClientCollection extends React.Component {
   }
 
   handleAdd = () => {
-    this.props.addTab("ClientView");
+    this.props.addTab("ClientView-New");
   };
   componentWillMount() {
     this.props.fetchClients();
