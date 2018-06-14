@@ -5,7 +5,7 @@ const TabPane = Tabs.TabPane;
 const FormItem = Form.Item;
 const Option = Select.Option;
 
-class ConfigurationForm extends React.Component {
+class ViewForm extends React.Component {
   handleAdd = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -146,4 +146,4 @@ class ConfigurationForm extends React.Component {
   }
 }
 
-export default Form.create()(ConfigurationForm);
+export default Form.create()(ViewForm);

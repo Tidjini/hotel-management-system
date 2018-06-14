@@ -59,6 +59,20 @@ module.exports = app => {
     );
   });
 
+  //get cleint by id
+  app.get("/api/clients/:id", (req, res) => {
+    // apply the fetch of { _application_key: req.app.key, _user_role: req.user.role }
+    const id = req.params.id;
+    Client.findById({ _id: id }).then(
+      client => {
+        res.send({ client });
+      },
+      err => {
+        res.status(400).send(err);
+      }
+    );
+  });
+
   //delete Client by id
   app.delete("/api/clients/:id", (req, res) => {
     // apply the fetch of { _application_key: req.app.key, _user_role: req.user.role }
