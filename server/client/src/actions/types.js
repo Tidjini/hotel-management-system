@@ -26,6 +26,7 @@ export const FETCH_CLIENT = "fetch_client";
 export const SAVE_CLIENT = "save_client";
 export const DELETE_CLIENT = "delete_client";
 export const UPDATE_CLIENT = "update_client";
+export const GET_CLIENT_BY_ID = "get_client_by_id";
 
 /**Tabs */
 export const ADD_TAB = "add_tab";
