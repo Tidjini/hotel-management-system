@@ -100,7 +100,8 @@ export const columns = [
     title: "Prix",
     dataIndex: "price",
     key: "price",
-    render: price => `${price.formatMoney(2, ",", " ")} DA`,
+    render: price =>
+      price != null ? `${price.formatMoney(2, ",", " ")} DA` : "0,00 DA",
     editable: true
   }
 ];
