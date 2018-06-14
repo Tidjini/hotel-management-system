@@ -2,14 +2,16 @@ import {
   SAVE_CLIENT,
   UPDATE_CLIENT,
   DELETE_CLIENT,
-  FETCH_CLIENT
+  FETCH_CLIENT,
+  GET_CLIENT_BY_ID
 } from "../actions/types";
 
 const INITIAL_STATE = {
   clients: [],
   lastAdded: {},
   deleted: {},
-  updated: {}
+  updated: {},
+  recentClient: {}
 };
 
 export default (state = INITIAL_STATE, actions) => {
@@ -20,6 +22,8 @@ export default (state = INITIAL_STATE, actions) => {
         clients.push({ ...element, key: element._id });
       });
       return { ...state, clients };
+    case GET_CLIENT_BY_ID:
+      return { ...state, recentClient: actions.payload.data };
     case SAVE_CLIENT:
       return { ...state, lastAdded: actions.payload.data };
     case DELETE_CLIENT:
