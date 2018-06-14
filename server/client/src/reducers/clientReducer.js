@@ -23,7 +23,8 @@ export default (state = INITIAL_STATE, actions) => {
       });
       return { ...state, clients };
     case GET_CLIENT_BY_ID:
-      return { ...state, recentClient: actions.payload.data };
+      console.log(actions.payload.data.client);
+      return { ...state, recentClient: actions.payload.data.client };
     case SAVE_CLIENT:
       return { ...state, lastAdded: actions.payload.data };
     case DELETE_CLIENT:

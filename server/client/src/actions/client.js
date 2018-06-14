@@ -1,5 +1,6 @@
 import {
   FETCH_CLIENT,
+  GET_CLIENT_BY_ID,
   UPDATE_CLIENT,
   DELETE_CLIENT,
   SAVE_CLIENT
@@ -13,6 +14,13 @@ export const fetchClients = () => async (dispatch, getState, api) => {
   });
 };
 
+export const getClientById = id => async (dispatch, getState, api) => {
+  const res = await api.get("/clients/" + id);
+  dispatch({
+    type: GET_CLIENT_BY_ID,
+    payload: res
+  });
+};
 export const addClient = Client => async (dispatch, getState, api) => {
   const res = await api.post("/clients", Client);
   dispatch({

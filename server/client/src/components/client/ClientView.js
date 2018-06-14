@@ -1,71 +1,66 @@
 import React, { Component } from "react";
 import ViewForm from "../common/ViewForm";
 import { connect } from "react-redux";
-import { fetchClients, addClient } from "./../../actions";
+import { fetchClients, addClient, getClientById } from "./../../actions";
 import { panes } from "./../../ViewModels/clients/ClientViewModel";
 
 class ClientView extends Component {
   state = {
-    client: {
-      _id: "",
-      Code: "",
-      Nom: "",
-      Prenom: "",
-      Categorie: 1,
-      Nationalite: "",
-      Sexe: 1,
-      Adresse: "",
-      NumTel: "",
-      NumFax: "",
-      Mobile: "",
-      Email: "",
-      RC: "",
-      NIS: "",
-      IF: "",
-      ART: "",
-      ExoTva: 1,
-      ListNoir: 0,
-      President: 0,
-      ExoTimbre: 0,
-      ExoTaxChambre: 0,
-      NumPassport: "",
-      DatePassport: "",
-      VillePassport: "",
-      CiNum: "",
-      Deliv: "",
-      CiVille: "",
-      NumActMariage: ""
-    }
+    id: undefined
   };
   componentWillMount() {
-    console.log(this.props.current);
-    const id = "";
+    const tab = this.props.current;
+    const infoTab = tab.split("-");
+    if (infoTab[1] != "New") {
+      this.props.getClient(infoTab[1]);
+      this.setState({ id: infoTab[1] });
+      //this.setState({ client:  });
+    }
   }
   addClient = client => {
     this.props.addClient(client);
     this.props.fetchClients();
   };
   render() {
-    return (
-      <ViewForm
-        panes={panes}
-        addFormData={this.addClient.bind(this)}
-        data={this.state.client}
-      />
-    );
+    if (this.state.id == undefined) {
+      console.log("id : undefined");
+      return <ViewForm panes={panes} addFormData={this.addClient.bind(this)} />;
+    } else {
+      if (this.props.recentClient != {}) {
+        console.log("recentClient : defined", this.props.recentClient);
+
+        return (
+          <ViewForm
+            panes={panes}
+            addFormData={this.addClient.bind(this)}
+            data={this.props.recentClient}
+          />
+        );
+      } else {
+        return <h1>loading</h1>;
+      }
+    }
   }
 }
 
 const mapStateToProps = state => {
-  const { clients } = state.clientData;
+  const { recentClient } = state.clientData;
   const { current } = state.tabsObject;
   return {
-    clients,
+    recentClient,
     current
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getClient: id => dispatch(getClientById(id)),
+    addClient: client => dispatch(addClient(client)),
+    fetchClients: () => dispatch(fetchClients())
   };
 };
 
 export default connect(
   mapStateToProps,
-  { fetchClients, addClient }
+  mapDispatchToProps
 )(ClientView);

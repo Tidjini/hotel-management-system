@@ -86,11 +86,21 @@ class ViewForm extends React.Component {
           </td>
         </tr>
       );
+      const value = this.props.data[element.field];
+      //this.props.form.setFieldsValue(this.props.data);
     });
+
+    // this.props.form.setFieldsValue({
+    //   Code: this.props.data["Code"]
+    // });
+    //this.props.form.setFieldsValue(this.props.data);
+
     return children;
   }
 
   getInputType(element) {
+    const value = this.props.data[element.field];
+    console.log(value);
     switch (element.inputType) {
       case "normal":
         return <Input placeholder={element.label} />;
@@ -111,7 +121,14 @@ class ViewForm extends React.Component {
         break;
     }
   }
+  state = {
+    viewData: undefined
+  };
 
+  componentDidMount() {
+    this.setState({ viewData: this.props.data });
+    // console.log(this.props.data);
+  }
   render() {
     return (
       <div>
