@@ -26,7 +26,7 @@ class ClientView extends Component {
       console.log("id : undefined");
       return <ViewForm panes={panes} addFormData={this.addClient.bind(this)} />;
     } else {
-      if (this.props.recentClient != {}) {
+      if (this.props.recentClient != undefined) {
         console.log("recentClient : defined", this.props.recentClient);
 
         return (

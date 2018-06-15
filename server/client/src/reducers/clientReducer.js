@@ -8,10 +8,10 @@ import {
 
 const INITIAL_STATE = {
   clients: [],
-  lastAdded: {},
-  deleted: {},
-  updated: {},
-  recentClient: {}
+  lastAdded: undefined,
+  deleted: undefined,
+  updated: undefined,
+  recentClient: undefined
 };
 
 export default (state = INITIAL_STATE, actions) => {

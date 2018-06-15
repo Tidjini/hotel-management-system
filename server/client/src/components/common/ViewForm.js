@@ -80,13 +80,14 @@ class ViewForm extends React.Component {
                     required: element.required,
                     message: "Champs requis"
                   }
-                ]
+                ],
+                initialValue: this.props.data[element.field]
               })(this.getInputType(element))}
             </FormItem>
           </td>
         </tr>
       );
-      const value = this.props.data[element.field];
+      // const value = this.props.data[element.field];
       //this.props.form.setFieldsValue(this.props.data);
     });
 
@@ -98,12 +99,28 @@ class ViewForm extends React.Component {
     return children;
   }
 
+  componentWillMount() {
+    console.log("Viewform : Component Did update => changed : ");
+    if (this.props.data != undefined) {
+      console.log(this.props.data["Code"]);
+      //this.props.form.setFieldsValue({ Code: this.props.data["Code"] });
+    }
+  }
+  handleChange(event) {
+    // this.props.form.setFieldsValue({
+    //   Code: this.props.data["Code"]
+    // });
+    //this.setState({value: event.target.value.toUpperCase()});
+  }
   getInputType(element) {
-    const value = this.props.data[element.field];
-    console.log(value);
+    //const value = this.props.data[element.field];
+
+    // console.log(value);
     switch (element.inputType) {
       case "normal":
-        return <Input placeholder={element.label} />;
+        return (
+          <Input placeholder={element.label} onChange={this.handleChange} />
+        );
         break;
       case "selector":
         return (
